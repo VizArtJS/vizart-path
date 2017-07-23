@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parcoords</title>
+    <link href="./vizart-path.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+    <script src="./vizart-path.standalone.js" type="text/javascript"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="update" class="btn btn-info" style="position: fixed;top: 10px; left: 70px">Update</div>
+<div class="dropdown" style="position: fixed; top: 10px; left: 160px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Color
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li id="color1"><a href="#">BuGn</a></li>
+        <li id="color2"><a href="#">Blues</a></li>
+        <li id="color3"><a href="#">Warm</a></li>
+        <li id="color4"><a href="#">Cubehelix</a></li>
+    </ul>
+</div>
+
+<div class="dropdown2" style="position: fixed; top: 10px; left: 250px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Sort
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li id="a1"><a href="#">dimension asc</a></li>
+        <li id="a2"><a href="#">dim desc</a></li>
+        <li id="a3"><a href="#">metric asc</a></li>
+        <li id="a4"><a href="#">metric desc</a></li>
+    </ul>
+</div>
+<div id="bar" style="width: 100%; height: calc(100% - 60px); top: 60px; position:relative"></div>
+
+<script>
+    $(document).ready(function () {
+        var options = {
+
+            chart: {
+                margin: {
+                    left: 120,
+                    top: 80,
+                    right: 30,
+                    bottom: 60
+                },
+            },
+            plots: {
+                hiddenAxis: ['name'],
+//                brushMode: '2D-strums',
+//                brushMode: 'angular',
+//                brushMode: '1D-axes-multi'
+
+            }
+        };
+
+        var chart = new VizArtPath.ParallelCoordinate('#bar', options);
+
+        //http://astrostatistics.psu.edu/datasets/COMBO17.html
+//        d3.csv('./assets/COMBO17.csv', (err, res)=>{
+        d3.csv('./assets/nutrients.csv', (err, res)=>{
+//            var line1 = res[0];
+//            let keyList = _.keys(line1);
+//
+//            options.analytics.nodeList = keyList.map(function(d){
+//                return {
+//                    field: d,
+//                    type: 'string'
+//                }
+//            });
+
+            chart.render(res);
+
+            // live update button is clicked
+            $('#update').click(function(){
+                chart.resetBrushes();
+            });
+
+        });
+
+
+
+
+
+        // change color
+        $('#color1').click(function(){
+            options.color.name = "BuGn";
+            chart.transitionColor(options.color);
+        });
+
+        $('#color2').click(function(){
+            options.color.name = "Blues";
+            chart.transitionColor(options.color)
+        });
+
+        $('#color3').click(function(){
+            options.color.name = "Warm";
+            chart.transitionColor(options.color)
+        });
+
+        $('#color4').click(function(){
+            options.color.name = "Cubehelix";
+            chart.transitionColor(options.color);
+        });
+
+        $('#a1').click(function(){
+            chart.sort('age', 'asc');
+        })
+        $('#a2').click(function(){
+            chart.sort('age', 'desc');
+        });
+        $('#a3').click(function(){
+            chart.sort('performance', 'asc');
+        });
+        $('#a4').click(function(){
+            chart.sort('performance', 'desc');
+        });
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sankey Chart Demo</title>
+    <link href="./vizart-path.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+    <script src="./vizart-path.standalone.js" type="text/javascript"></script>
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: #525252;
+            text-align: center;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .full-height {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dropdown" style="position: fixed; top: 10px; left: 10px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Color
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li id="color1"><a href="#">BuGn</a></li>
+        <li id="color2"><a href="#">Blues</a></li>
+        <li id="color3"><a href="#">Warm</a></li>
+        <li id="color4"><a href="#">Cubehelix</a></li>
+    </ul>
+</div>
+
+<div class="dropdown2" style="position: fixed; top: 10px; right: 10px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Sort
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li id="a1"><a href="#">dimension asc</a></li>
+        <li id="a2"><a href="#">dim desc</a></li>
+        <li id="a3"><a href="#">metric asc</a></li>
+        <li id="a4"><a href="#">metric desc</a></li>
+    </ul>
+</div>
+
+<div class="container full-height">
+    <div class="row full-height">
+        <div class="col-lg-2 col-md-2">
+            <div class="row" style="height: 200px">
+
+
+            </div>
+
+            <div class="row" style="height: calc(100% - 200px)">
+                <ul id="year-list" class="list-group full-height" style="overflow-y: auto">
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-lg-10 col-md-10 full-height">
+            <div id="bar" style="width: 100%; height: 100%"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        d3.csv('./assets/trade.csv', function (err, data) {
+            data.forEach(function (d) {
+                d.year  = +d.year;
+                d.flow1 = +d.flow1;
+                d.flow2 = +d.flow2;
+            });
+            var years = d3.range(2005, 1865, -5);
+
+            var scheme1 = [
+                "#F44336",
+                "#E91E63",
+                "#9C27B0",
+                "#673AB7",
+                "#3F51B5",
+                "#2196F3",
+                "#03A9F4",
+                "#00BCD4",
+                "#009688",
+                "#4CAF50",
+                "#8BC34A",
+                "#CDDC39",
+                "#FFEB3B",
+                "#FFC107",
+                "#FF9800",
+                "#FF5722"
+            ];
+
+            var scheme2 = [
+                "#947702",
+                "#57781d",
+                "#38753c",
+                "#115b5e",
+                "#395558",
+                "#49424a",
+                "#603830",
+                "#6e3e58",
+                "#9a4143",
+                "#ac3e1b",
+                "#a84502",
+                "#ab4400",
+                "#b45800",
+                "#9b6f00"
+            ]
+            var chord = new VizArtPath.Chord('#bar', {
+                chart: {
+                    margin: {
+                        top: 90,
+                        bottom: 90,
+                        left: 0,
+                        right: 0
+                    },
+                },
+                data: {
+                    source: {
+                        accessor: 'importer1',
+                    },
+                    target: {
+                        accessor: 'importer2',
+                    },
+
+                    links: [
+                        {
+                            accessor: 'flow1',
+                        },
+                        {
+                            accessor: 'flow2',
+                        },
+
+                    ]
+                },
+
+                color: {
+
+                    scheme: scheme1,
+                    type: 'categorical'
+                }
+            });
+
+
+            var master = {};
+
+            _.each(data, function(d, i){
+                if (!_.has(master, d.year)) {
+                    master[d.year] = [];
+                } else {
+                    master[d.year].push(d);
+                }
+            })
+
+            d3.select('#year-list').selectAll('.list-group-item ')
+                .data(years)
+                .enter()
+                .append('div')
+                .attr('class', 'list-group-item')
+                .text(function(d){
+                    return d;
+                })
+                .on('click', function(d){
+                    var yearData = master[d];
+
+                    chord.data(yearData);
+                    chord.update();
+                });
+
+            chord.render(master['2005']);
+            var options2 = chord.options();
+
+            // change color
+            $('#color1').click(function(){
+                options2.color.scheme = ['#9e0142','#d53e4f','#f46d43','#fdae61','#fee08b','#ffffbf','#e6f598','#abdda4','#66c2a5','#3288bd','#5e4fa2'];
+                chord.transitionColor(options2.color);
+            });
+
+            $('#color2').click(function(){
+                options2.color.scheme = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'];
+                chord.transitionColor(options2.color)
+            });
+
+            $('#color3').click(function(){
+                options2.color.scheme = ['#a50026','#d73027','#f46d43','#fdae61','#fee090','#ffffbf','#e0f3f8','#abd9e9','#74add1','#4575b4','#313695'];
+                chord.transitionColor(options2.color)
+            });
+
+            $('#color4').click(function(){
+                options2.color.scheme = ['#9C6744','#C9BEB9','#CFA07E','#C4BAA1','#C2B6BF','#121212','#8FB5AA','#85889E','#9C7989','#91919C','#242B27','#212429','#99677B','#36352B','#33332F','#2B2B2E','#2E1F13','#2B242A','#918A59','#6E676C','#6E4752','#6B4A2F','#998476','#8A968D','#968D8A','#968D96','#CC855C', '#967860','#929488','#949278','#A0A3BD','#BD93A1','#65666B','#6B5745','#6B6664','#695C52','#56695E','#69545C','#565A69','#696043','#63635C','#636150','#333131','#332820','#302D30','#302D1F','#2D302F','#CFB6A3','#362F2A'];
+                chord.transitionColor(options2.color);
+            });
+
+            $('#a1').click(function(){
+                chord.ordering('row', 'asc');
+            })
+            $('#a2').click(function(){
+                chord.ordering('row', 'desc');
+            });
+            $('#a3').click(function(){
+                chord.ordering('column', 'asc');
+            });
+            $('#a4').click(function(){
+                chord.ordering('column', 'desc');
+            });
+
+        });
+
+
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sankey Chart Demo</title>
+    <link href="./vizart-path.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="./vizart-path.standalone.js" type="text/javascript"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="update" class="btn btn-info" style="position: fixed;top: 10px; left: 70px">Update</div>
+<div class="dropdown" style="position: fixed; top: 10px; left: 160px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Color
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li id="color1"><a href="#">BuGn</a></li>
+        <li id="color2"><a href="#">Blues</a></li>
+        <li id="color3"><a href="#">Warm</a></li>
+        <li id="color4"><a href="#">Cubehelix</a></li>
+    </ul>
+</div>
+
+<div class="dropdown2" style="position: fixed; top: 10px; left: 250px;">
+    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Sort
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <li id="a1"><a href="#">dimension asc</a></li>
+        <li id="a2"><a href="#">dim desc</a></li>
+        <li id="a3"><a href="#">metric asc</a></li>
+        <li id="a4"><a href="#">metric desc</a></li>
+    </ul>
+</div>
+<div id="bar" style="width: calc(100% - 40px); height: 600px"></div>
+
+<script>
+    $(document).ready(function () {
+        $.getJSON('./assets/energy.json', function(data){
+            var sankey = new VizArtPath.Sankey('#bar', {
+                chart: {
+                    margin: {
+                        left: 40,
+                        right: 50,
+                        top: 80,
+                        bottom: 20
+                    }
+                },
+                color: {
+                    scheme: [
+                        "#F44336",
+                        "#E91E63",
+                        "#9C27B0",
+                        "#673AB7",
+                        "#3F51B5",
+                        "#2196F3",
+                        "#03A9F4",
+                        "#00BCD4",
+                        "#009688",
+                        "#4CAF50",
+                        "#8BC34A",
+                        "#CDDC39",
+                        "#FFEB3B",
+                        "#FFC107",
+                        "#FF9800",
+                        "#FF5722"
+                    ],
+                    type: 'categorical'
+                }
+            });
+            sankey.render(data);
+
+            // live update button is clicked
+            $('#update').click(function(){
+                var opts = sankey.options();
+
+                opts.plots.horizontal = false;
+                sankey.options(opts);
+                sankey.update();
+            });
+
+            var options2 = sankey.options();
+
+            // change color
+            $('#color1').click(function(){
+                options2.color.scheme = "BuGn";
+                sankey.transitionColor(options2.color);
+            });
+
+            $('#color2').click(function(){
+                options2.color.scheme = "Blues";
+                sankey.transitionColor(options2.color)
+            });
+
+            $('#color3').click(function(){
+                options2.color.scheme = "Warm";
+                sankey.transitionColor(options2.color)
+            });
+
+            $('#color4').click(function(){
+                options2.color.scheme = "Cubehelix";
+                sankey.transitionColor(options2.color);
+            });
+
+            $('#a1').click(function(){
+                sankey.sort('dimension', 'asc');
+            })
+            $('#a2').click(function(){
+                sankey.sort('dimension', 'desc');
+            });
+            $('#a3').click(function(){
+                sankey.sort('metric', 'asc');
+            });
+            $('#a4').click(function(){
+                sankey.sort('metric', 'desc');
+            });
+        });
+
+
+
+    });
+</script>
+</body>
+</html>
