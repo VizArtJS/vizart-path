@@ -28,7 +28,7 @@ const _chord = new Chord(_domId, _opt)....
 ```
 npm install
 ```
-3. View demos in web browser at localhost:3005
+3. View demos in web browser at localhost:3004
 ```
 npm run dev
 ```
