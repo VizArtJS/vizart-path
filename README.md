@@ -123,7 +123,7 @@ _chart.render(_data);
 
 
 ### Parallel Coordinates
-[<img alt="Parallel Coordinates" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/parcoords.jpg">](https://vizartjs.github.io/parcoords.html)
+[<img alt="Parallel Coordinates" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/parallel_coordinates.jpg">](https://vizartjs.github.io/parcoords.html)
 ```javascript
 import { ParallelCoordinate } from 'vizart-path';
 import 'vizart-path/dist/vizart-path.css';
