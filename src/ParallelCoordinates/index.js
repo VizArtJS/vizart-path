@@ -60,7 +60,7 @@ const DefaultOptions = {
     }
 };
 
-class ParallelCoordinate extends AbstractChart {
+class ParallelCoordinates extends AbstractChart {
 
     constructor(canvasId, _userOptions) {
         super(canvasId, _userOptions);
@@ -297,4 +297,4 @@ class ParallelCoordinate extends AbstractChart {
     };
 }
 
-export default ParallelCoordinate;
+export default ParallelCoordinates;

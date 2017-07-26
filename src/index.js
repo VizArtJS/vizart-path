@@ -1,6 +1,6 @@
 export { version } from '../package.json';
 
-export { default as ParallelCoordinate } from './ParallelCoordinate';
+export { default as ParallelCoordinates } from './ParallelCoordinates';
 export { default as BiPartite } from './BiPartite';
 export { default as Chord } from './Chord';
 export { default as StrentchedChord } from './StrentchedChord';
