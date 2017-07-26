@@ -18,6 +18,10 @@ import {
     without
 } from './helper';
 
+import isNull from 'lodash-es/isNull';
+import isUndefined from 'lodash-es/isUndefined';
+import isArray from 'lodash-es/isArray';
+
 
 //============================================================================================
 
@@ -48,7 +52,8 @@ const ParCoords = (config)=> {
         hideAxis : [],
         flipAxes: [],
         animationTime: 1100, // How long it takes to flip the axis when you double click
-        rotateLabels: false
+        rotateLabels: false,
+        evenScale: null
     };
 
     extend(__, config);
@@ -246,9 +251,22 @@ const ParCoords = (config)=> {
                     });
                     _extent = temp;
                 }
-                return scaleLinear()
-                    .domain(_extent)
-                    .range(getRange());
+
+
+
+                if(!isNull(__.evenScale)
+                    && !isUndefined(__.evenScale)
+                    && isArray(__.evenScale)
+                    && __.evenScale.length === 2) {
+
+                    return scaleLinear()
+                        .domain(__.evenScale)
+                        .range(getRange());
+                } else {
+                    return scaleLinear()
+                        .domain(_extent)
+                        .range(getRange());
+                }
             },
             "string": function(k) {
                 let counts = {},

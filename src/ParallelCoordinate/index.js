@@ -10,6 +10,7 @@ import {
 import { default as crossfilter } from 'crossfilter';
 import isNumber from 'lodash-es/isNumber';
 import isDate from 'lodash-es/isDate';
+import isArray from 'lodash-es/isArray';
 import { extent } from 'd3-array';
 import { keys } from 'd3-collection';
 import { select } from 'd3-selection';
@@ -54,7 +55,8 @@ const DefaultOptions = {
         colorDimension: null,
         renderingMode: 'queue',
         dimensions: null,
-        autoSortDimensions: 'asc'
+        autoSortDimensions: 'asc',
+        evenScale: null
     }
 };
 
@@ -86,6 +88,7 @@ class ParallelCoordinate extends AbstractChart {
             .composite(this._options.plots.composite)
             .margin(this._options.chart.margin)
             .mode(this._options.plots.renderingMode)
+            .evenScale(this._options.plots.evenScale)
             .shadows()
 
         this.parcoords.color( (d)=> {
