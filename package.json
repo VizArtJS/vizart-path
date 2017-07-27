@@ -1,6 +1,6 @@
 {
   "name": "vizart-path",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "VizArt: Path",
   "main": "dist/vizart-path.js",
   "module": "dist/vizart-path.mjs",

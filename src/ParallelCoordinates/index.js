@@ -10,7 +10,6 @@ import {
 import { default as crossfilter } from 'crossfilter';
 import isNumber from 'lodash-es/isNumber';
 import isDate from 'lodash-es/isDate';
-import isArray from 'lodash-es/isArray';
 import { extent } from 'd3-array';
 import { keys } from 'd3-collection';
 import { select } from 'd3-selection';
