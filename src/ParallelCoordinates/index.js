@@ -292,6 +292,11 @@ class ParallelCoordinates extends AbstractChart {
         return retDim
     }
 
+    evenScale(_evenScale) {
+        this._options.plots.evenScale = _evenScale;
+        this.parcoords.evenScale(this._options.plots.evenScale);
+    }
+
     createOptions(_userOpt) {
         return mergeBase(DefaultOptions, _userOpt);
     };
