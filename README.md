@@ -93,7 +93,48 @@ const _data = [
 const _chart = new Chord('#chart', options);
 _chart.render(_data);
 ```
+Options spec
+```
+{
+    chart: {
+        type: 'chord',
+        margin: NoMargin
+    },
+    color: DefaultCategoricalColor,
+    data: {
+        source: {
+            accessor: null,
+            name: null,
+            formatter: null
+        },
+        target: {
+            accessor: null,
+            name: null,
+            formatter: null
+        },
 
+        links:[
+            {
+                accessor: null,
+                name: null,
+                formatter: null
+            },
+            {
+                accessor: null,
+                name: null,
+                formatter: null
+            }
+        ]
+    },
+    plots: {
+        drawTicks: true
+    },
+    ordering: {
+        name: 'row', //row, column or volume
+        direction: 'asc'
+    }
+}
+```
 
 ### Strentched Chord
 [<img alt="Strentched Chord" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/stretched_chord.jpg">](https://vizartjs.github.io/stretched_chord.html)
@@ -120,7 +161,42 @@ const _data = ...
 const _chart = new StrentchedChord('#chart', options);
 _chart.render(_data);
 ```
+Options sepc
+```
+ {
+    chart: {
+        type: 'stretched-chord',
+    },
+    data:{
+        source: {
+            accessor: null,
+            name: null,
+            formatter: null
+        },
+        target: {
+            accessor: null,
+            name: null,
+            formatter: null
+        },
 
+        link: {
+            accessor: null,
+            name: null,
+            formatter: null
+        }
+    },
+    color: DefaultCategoricalColor,
+    plots: {
+        innerRadiusRatio: 0.95,
+        opacityDefault: 0.7, //default opacity of chords
+        opacityLow: 0.02, //hover opacity of those chords not hovered over
+        pullOutSize: 150, //How many pixels should the two halves be pulled apart
+        fontSize: '16px',
+        emptyPercent: 0.01, //What % of the circle should become empty
+        chordPadding: 0.02
+    },
+}
+```
 
 ### Parallel Coordinates
 [<img alt="Parallel Coordinates" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/parallel_coordinates.jpg">](https://vizartjs.github.io/parcoords.html)
@@ -141,7 +217,34 @@ const _data = ...
 const _chart = new ParallelCoordinate('#chart', options);
 _chart.render(_data);
 ```
-
+Options spec
+```
+{
+    chart: {
+        type: 'parallel_coordinates',
+        margin: NoMargin
+    },
+    color: DefaultCategoricalColor,
+    plots: {
+        hiddenAxis:[],
+        flipAxes: [],
+        alpha: 0.25,
+        bundlingStrength: 0.5,
+        bundleDimension: null,
+        composite: 'darken',
+        smoothness: 0.0,
+        showControlPoints: false,
+        animationTime: 1100, // How long it takes to flip the axis when you double click
+        brushMode: '1D-axes',
+        brushPredicate: 'AND',
+        colorDimension: null,
+        renderingMode: 'queue',
+        dimensions: null,
+        autoSortDimensions: 'asc',
+        evenScale: null
+    }
+}
+```
 
 ### Sequential Sunburst
 [<img alt="Sequential Sunburst" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/sequential_sunburst.jpg">](https://vizartjs.github.io/sequential_sunburst.html)
@@ -173,7 +276,20 @@ d3.text("./data/visit-sequences.csv", (text)=> {
 });
 ```
 
-
+Options spec
+```
+{
+    chart: {
+        type: 'sequential-sunburst',
+        margin: NoMargin
+    },
+    color: DefaultCategoricalColor,
+    plots: {
+        breadcrumb: {w: 75, h: 30, s: 3, t: 10},
+        legendMargin: {w: 75, h: 30, s: 3, r: 3}
+    }
+}
+```
 ### Sankey
 [<img alt="Sankey" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/sankey.jpg">](https://vizartjs.github.io/sankey.html)
 ```javascript
@@ -191,6 +307,30 @@ const _chart = new Sankey('#chart', options);
 _chart.render(_data);
 ```
 
+Options spec
+```
+{
+    chart: {
+        type: 'sankey',
+        margin: NoMargin,
+    },
+    color: DefaultCategoricalColor,
+    plots: {
+        horizontal: true, // 'horizontal', 'vertical'
+        layout: 32,
+        nodeWidth: 15,
+        nodePadding: 10,
+        colorfulLink: true,
+        linkColor: '#000',
+        linkOpacity: 0.2,
+        nodeOpacity: 1,
+        nodeFontSize: 14,
+        realTime: false,
+        realTimeSpeed: 5000, // 5s
+        realTimeInterval: 1 // 1s
+    }
+}
+```
 
 
 ### Bi-Partite
@@ -233,7 +373,54 @@ const _chart = new BiPartite('#chart', options);
 _chart.render(_data);
 ```
 
+Options spec
+```
+{
+    chart: {
+        type: 'biPartite',
+        margin: NoMargin,
+    },
+    animation:{
+        duration: {
+            partite: 500,
+        }
+    },
+    data: {
+        source: {
+            name: null,
+            type: FieldType.STRING,
+            accessor: null,
+        },
 
+        target: {
+            name: null,
+            type: FieldType.STRING,
+            accessor: null
+        },
+
+        links: [
+            {
+                name: null,
+                type: FieldType.NUMBER,
+                accessor: null
+            },
+            {
+                name: null,
+                type: FieldType.NUMBER,
+                accessor: null
+            }
+        ],
+    },
+    color: DefaultCategoricalColor,
+    plots: {
+        buffMargin: 1,
+        minHeight: 14,
+        gap: 110,
+        gapEdge: 140,
+        mainRectGap: 10
+    }
+}
+```
 
 ## License
 
