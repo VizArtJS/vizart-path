@@ -62,7 +62,6 @@ npm run test:cover  // run tests and view coverage report
 * [Chord](#chord)
 * [Strentched Chord](#strentched-chord)
 * [Parallel Coordinates](#parallel-coordinates)
-* [Sequential Sunburst](#sequential-sunburst)
 * [Sankey](#sankey)
 * [Bi-Partite](#bi-partite)
 
@@ -246,50 +245,7 @@ Options spec
 }
 ```
 
-### Sequential Sunburst
-[<img alt="Sequential Sunburst" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/sequential_sunburst.jpg">](https://vizartjs.github.io/sequential_sunburst.html)
-```javascript
-import { SequentialSunburst } from 'vizart-hierarchy';
-import 'vizart-hierarchy/dist/vizart-hierarchy.css';
 
-d3.text("./data/visit-sequences.csv", (text)=> {
-	let csv = d3.csvParseRows(text);
-	let json = VizArtHierarchy.buildHierarchy(csv);
-
-	let sunburst = SequentialSunburst('#chart', {
-		chart: {
-			margin: {
-				top: 40,
-				bottom: 40,
-				left: 0,
-				right: 0
-			},
-		},
-	},{
-		sequence: '#sequence',
-		explanation: '#explanation',
-		percentage: '#percentage'
-	});
-
-	sunburst.render(json);
-	sunburst.drawLegend('#legend')
-});
-```
-
-Options spec
-```
-{
-    chart: {
-        type: 'sequential-sunburst',
-        margin: NoMargin
-    },
-    color: DefaultCategoricalColor,
-    plots: {
-        breadcrumb: {w: 75, h: 30, s: 3, t: 10},
-        legendMargin: {w: 75, h: 30, s: 3, r: 3}
-    }
-}
-```
 ### Sankey
 [<img alt="Sankey" src="https://github.com/vizartjs/vizartjs.github.io/blob/master/img/charts/sankey.jpg">](https://vizartjs.github.io/sankey.html)
 ```javascript
