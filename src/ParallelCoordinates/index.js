@@ -1,7 +1,6 @@
 import {
     DefaultCategoricalColor,
     AbstractChart,
-    NoMargin,
     mergeBase,
     check,
     FieldType
@@ -36,7 +35,6 @@ const Composites = [
 const DefaultOptions = {
     chart: {
         type: 'parallel_coordinates',
-        margin: NoMargin
     },
     color: DefaultCategoricalColor,
     plots: {

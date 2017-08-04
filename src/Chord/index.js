@@ -1,5 +1,4 @@
 import {
-    NoMargin,
     DefaultCategoricalColor,
     mergeBase,
     AbstractChart
@@ -13,7 +12,6 @@ import { select, selectAll, event as d3Event } from 'd3-selection';
 const DefaultOptions = {
     chart: {
         type: 'chord',
-        margin: NoMargin
     },
     color: DefaultCategoricalColor,
     data: {

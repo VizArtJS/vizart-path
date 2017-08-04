@@ -1,7 +1,6 @@
 import {
     AbstractChart,
     DefaultCategoricalColor,
-    NoMargin,
     makeColorScale,
     mergeBase,
     FieldType,
@@ -17,10 +16,7 @@ import PartiteLayout from './layout';
 
 
 const DefaultOptions = {
-    chart: {
-        type: 'biPartite',
-        margin: NoMargin,
-    },
+    chart: { type: 'biPartite' },
     animation:{
         duration: {
             partite: 500,

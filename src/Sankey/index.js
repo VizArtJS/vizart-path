@@ -1,7 +1,6 @@
 import {
     AbstractChart,
     DefaultCategoricalColor,
-    NoMargin,
     mergeBase
 } from 'vizart-core';
 
@@ -18,7 +17,6 @@ import CircularSankey from './layout/CircularSankey';
 const DefaultOptions = {
     chart: {
         type: 'sankey',
-        margin: NoMargin,
     },
     color: DefaultCategoricalColor,
     plots: {
