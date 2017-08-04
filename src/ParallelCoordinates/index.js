@@ -3,7 +3,6 @@ import {
     AbstractChart,
     mergeBase,
     check,
-    FieldType
 } from 'vizart-core';
 
 import { default as crossfilter } from 'crossfilter';

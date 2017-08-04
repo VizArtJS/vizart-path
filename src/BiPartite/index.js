@@ -1,9 +1,8 @@
 import {
     AbstractChart,
     DefaultCategoricalColor,
-    makeColorScale,
     mergeBase,
-    FieldType,
+    Globals,
     check,
 } from 'vizart-core';
 import { select } from 'd3-selection';
@@ -25,25 +24,25 @@ const DefaultOptions = {
     data: {
         source: {
             name: null,
-            type: FieldType.STRING,
+            type: Globals.DataType.STRING,
             accessor: null,
         },
 
         target: {
             name: null,
-            type: FieldType.STRING,
+            type: Globals.DataType.STRING,
             accessor: null
         },
 
         links: [
             {
                 name: null,
-                type: FieldType.NUMBER,
+                type: Globals.DataType.NUMBER,
                 accessor: null
             },
             {
                 name: null,
-                type: FieldType.NUMBER,
+                type: Globals.DataType.NUMBER,
                 accessor: null
             }
         ],
