@@ -88,7 +88,7 @@ class ParallelCoordinates extends AbstractChart {
             .shadows()
 
         this.parcoords.color( (d)=> {
-            return this._colorScale(d[this._options.plots.colorDimension]);
+            return this._color(d[this._options.plots.colorDimension]);
         });
 
         // Bundling
@@ -209,7 +209,7 @@ class ParallelCoordinates extends AbstractChart {
         }
 
 
-        this._colorScale = makeColorScale(this._options.color);
+        this._color = makeColorScale(this._options.color);
 
 
         switch (_dim.type) {
@@ -217,7 +217,7 @@ class ParallelCoordinates extends AbstractChart {
                 break;
             case FiledType.NUMBER:
             case FiledType.DATE:
-                this._colorScale.domain(extent(this._data,  (d)=> {
+                this._color.domain(extent(this._data,  (d)=> {
                     return d[_dimension]
                 }));
                 break;
@@ -227,7 +227,7 @@ class ParallelCoordinates extends AbstractChart {
         }
 
 
-        this.parcoords.color( (d)=> { return this._colorScale(d[_dimension]);
+        this.parcoords.color( (d)=> { return this._color(d[_dimension]);
         }).render();
     };
 
@@ -235,7 +235,7 @@ class ParallelCoordinates extends AbstractChart {
         super.transitionColor(colorOptions);
 
         this.parcoords.color((d) => {
-            return this._colorScale(d[this._options.plots.colorDimension]);
+            return this._color(d[this._options.plots.colorDimension]);
         }).render();
     };
 

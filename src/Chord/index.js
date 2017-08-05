@@ -88,12 +88,12 @@ class Chord extends AbstractChart {
 
         this._svg.selectAll("g.group").select("path")
             .transition(_trans)
-            .style("fill",  (d)=> { return this._colorScale(d._id); });
+            .style("fill",  (d)=> { return this._color(d._id); });
 
         this._svg.selectAll("path.chord")
             .transition(_trans)
             .style("fill",  (d)=> {
-                return this._colorScale(d.source._id);
+                return this._color(d.source._id);
             })
     };
 
@@ -183,7 +183,7 @@ class Chord extends AbstractChart {
 
         gEnter.append("path")
             .style("pointer-events", "none")
-            .style("fill",  (d)=> { return this._colorScale(d._id); })
+            .style("fill",  (d)=> { return this._color(d._id); })
             .attr("d", _arc);
 
         gEnter.append("text")
@@ -223,7 +223,7 @@ class Chord extends AbstractChart {
         chords.enter().append("path")
             .attr("class", "chord")
             .style("fill",  (d)=> {
-                return this._colorScale(d.source._id);
+                return this._color(d.source._id);
             })
             .attr("d", _ribbon)
             .on("mousemove", (d)=> {this._chordMouseover(d)} )

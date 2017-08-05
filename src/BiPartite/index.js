@@ -198,10 +198,10 @@ class BiPartite extends AbstractChart {
             .duration(this._options.animation.duration.change);
 
         _transition.selectAll(".subbar")
-            .style("fill", (d) => { return this._colorScale(d.key1);  });
+            .style("fill", (d) => { return this._color(d.key1);  });
 
         _transition.selectAll('.edge')
-            .style("fill", (d) => { return this._colorScale(d.key1); });
+            .style("fill", (d) => { return this._color(d.key1); });
 
     };
 
@@ -301,7 +301,7 @@ class BiPartite extends AbstractChart {
             .attr("y", (d) => {  return d.y })
             .attr("width", b)
             .attr("height", (d) => { return d.h })
-            .style("fill", (d) => { return this._colorScale(d.key1); });
+            .style("fill", (d) => { return this._color(d.key1); });
     }
 
     _drawEdges(data, id) {
@@ -318,7 +318,7 @@ class BiPartite extends AbstractChart {
             .append("polygon")
             .attr("class", "edge")
             .attr("points", (d)=>{ return edgePolygon(this.bb, d)})
-            .style("fill", (d) => { return this._colorScale(d.key1); })
+            .style("fill", (d) => { return this._color(d.key1); })
             .style("opacity", 0.5).each(function(d) { this._current = d;  });
     }
 

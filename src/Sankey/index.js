@@ -100,7 +100,7 @@ class Sankey extends AbstractChart {
                 return Math.max(1, d.dy);
             })
             .style("stroke", (d)=> {
-                return this._options.plots.colorfulLink ? this._colorScale(d.source.name) : this._options.plots.linkColor;
+                return this._options.plots.colorfulLink ? this._color(d.source.name) : this._options.plots.linkColor;
             })
             .style('stroke-opacity', this._options.plots.linkOpacity);
 
@@ -119,7 +119,7 @@ class Sankey extends AbstractChart {
                 return Math.max(1, d.dy);
             })
             .style("stroke", (d)=> {
-                return this._options.plots.colorfulLink ? this._colorScale(d.source.name) : this._options.plots.linkColor;
+                return this._options.plots.colorfulLink ? this._color(d.source.name) : this._options.plots.linkColor;
             })
             .style('stroke-opacity', this._options.plots.linkOpacity);
 
@@ -182,7 +182,7 @@ class Sankey extends AbstractChart {
                 return d.dy;
             })
             .style("fill",  (d)=> {
-                return d.color = this._colorScale(d.name);
+                return d.color = this._color(d.name);
             })
             .style('fill-opacity', this._options.plots.nodeOpacity);
 
@@ -259,7 +259,7 @@ class Sankey extends AbstractChart {
                 return d.dy;
             })
             .style("fill",  (d)=> {
-                return d.color = this._colorScale(d.name);
+                return d.color = this._color(d.name);
             })
             .style('fill-opacity', this._options.plots.nodeOpacity)
             .style('shape-rendering', 'crispEdges')
@@ -425,7 +425,7 @@ class Sankey extends AbstractChart {
             .duration(this._options.animation.duration.quickUpdate)
             .style("stroke",  (d)=> {
                 return this._options.plots.colorfulLink
-                    ? this._colorScale(d.source.name)
+                    ? this._color(d.source.name)
                     : this._options.plots.linkColor;
             })
             .style('stroke-opacity', this._options.plots.linkOpacity);
@@ -485,7 +485,7 @@ class Sankey extends AbstractChart {
             .duration(this._options.animation.duration.quickUpdate)
             .style("stroke",  (d)=> {
                 return this._options.plots.colorfulLink
-                    ? this._colorScale(d.source.name)
+                    ? this._color(d.source.name)
                     : this._options.plots.linkColor;
             })
             .style('stroke-opacity', this._options.plots.linkOpacity);
@@ -502,7 +502,7 @@ class Sankey extends AbstractChart {
                 return i / this._data.nodes.length * this._options.animation.duration.color;
             })
             .style("fill",  (d)=> {
-                return this._colorScale(d.name);
+                return this._color(d.name);
             });
 
         this._linkGroup.selectAll('.sankey-link')
@@ -513,7 +513,7 @@ class Sankey extends AbstractChart {
             })
             .style("stroke",  (d)=> {
                 return this._options.plots.colorfulLink
-                    ? this._colorScale(d.source.name)
+                    ? this._color(d.source.name)
                     : this._options.plots.linkColor
             });
     };
