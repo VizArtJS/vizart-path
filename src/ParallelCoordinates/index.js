@@ -1,5 +1,6 @@
 import {
     DefaultCategoricalColor,
+    categoricalColor,
     AbstractChart,
     mergeBase,
     check,
@@ -209,7 +210,7 @@ class ParallelCoordinates extends AbstractChart {
         }
 
 
-        this._color = makeColorScale(this._options.color);
+        this._color = categoricalColor(this._options.color.scheme);
 
 
         switch (_dim.type) {

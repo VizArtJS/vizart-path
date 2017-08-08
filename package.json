@@ -1,6 +1,6 @@
 {
   "name": "vizart-path",
-  "version": "0.6.8",
+  "version": "0.7.0",
   "description": "VizArt: Path",
   "main": "dist/vizart-path.js",
   "module": "dist/vizart-path.mjs",
@@ -40,7 +40,7 @@
     "d3-transition": "^1.1.0",
     "lodash-es": "^4.17.4",
     "requestanimationframe": "0.0.23",
-    "vizart-core": "^0.8.2"
+    "vizart-core": "^0.9.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -53,7 +53,7 @@
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^3.5.0",
     "rollup": "^0.45.2",
-    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-babel": "^3.0.1",
     "rollup-plugin-commonjs": "^8.1.0",
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-livereload": "^0.4.0",
