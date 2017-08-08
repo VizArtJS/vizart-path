@@ -67,6 +67,10 @@
 //                brushMode: 'angular',
 //                brushMode: '1D-axes-multi'
 
+            },
+            color: {
+                scheme: 'Inferno',
+                type: 'categorical'
             }
         };
 
@@ -77,6 +81,10 @@
         d3.csv('./assets/nutrients.csv', (err, res)=>{
 
             chart.render(res);
+
+            console.log(chart._color.domain());
+            console.log(chart._color.range());
+
 
             // live update button is clicked
             $('#update').click(function(){
