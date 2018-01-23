@@ -208,7 +208,7 @@ const options = {
 		margin: { left: 30, right: 30, top: 10, bottom: 30 }
 	},
 	plots: {
-		hiddenAxis: ['name'],
+		hideAxis: ['name'],
 	}
 };
 
@@ -225,7 +225,7 @@ Options spec
     },
     color: DefaultCategoricalColor,
     plots: {
-        hiddenAxis:[],
+        hideAxis:[],
         flipAxes: [],
         alpha: 0.25,
         bundlingStrength: 0.5,
@@ -237,7 +237,7 @@ Options spec
         brushMode: '1D-axes',
         brushPredicate: 'AND',
         colorDimension: null,
-        renderingMode: 'queue',
+        mode: 'queue',
         dimensions: null,
         autoSortDimensions: 'asc',
         evenScale: null
