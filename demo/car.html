@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Parcoords</title>
+    <title>Parcoords Car Demo</title>
     <link href="./vizart-path.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
     <script src="./vizart-path.standalone.js" type="text/javascript"></script>
+    <script src="./assets/sylvester.js"></script>
     <style>
         html,
         body {
@@ -63,19 +64,15 @@
             },
             plots: {
                 hideAxis: ['name'],
-                colorDimension: 'group'
+                bundleDimension: 'economy (mpg)',
 //                brushMode: '2D-strums',
 //                brushMode: 'angular',
 //                brushMode: '1D-axes-multi'
 
             },
             color: {
-                scheme: ["#a6cee3",
-                    "#1f78b4",
-                    "#b2df8a",
-                    "#33a02c",
-                    "#fb9a99",
-                    "#e31a1c","#fdbf6f","#ff7f00",
+                scheme: ["#a6cee3","#1f78b4","#b2df8a","#33a02c",
+                    "#fb9a99","#e31a1c","#fdbf6f","#ff7f00",
                     "#cab2d6","#6a3d9a","#ffff99","#b15928"],
                 type: 'categorical'
             }
@@ -85,7 +82,7 @@
 
         //http://astrostatistics.psu.edu/datasets/COMBO17.html
 //        d3.csv('./assets/COMBO17.csv', (err, res)=>{
-        d3.csv('./assets/nutrients.csv', (err, res)=>{
+        d3.csv('./assets/cars.csv', (err, res)=>{
 
             chart.render(res);
 
