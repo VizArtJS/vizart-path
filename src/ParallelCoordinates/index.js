@@ -112,6 +112,10 @@ class ParallelCoordinates extends AbstractChart {
             this.parcoords.hideAxis(this._options.plots.hideAxis);
         }
 
+        if (this._options.plots.bundleDimension) {
+            this.parcoords.bundleDimension(this._options.plots.bundleDimension)
+        }
+
         this.parcoords.render();
 
 

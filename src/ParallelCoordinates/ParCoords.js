@@ -22,7 +22,6 @@ import isNull from 'lodash-es/isNull';
 import isUndefined from 'lodash-es/isUndefined';
 import isArray from 'lodash-es/isArray';
 
-
 //============================================================================================
 
 const ParCoords = (config)=> {
