@@ -38,7 +38,7 @@ const DefaultOptions = {
     },
     color: DefaultCategoricalColor,
     plots: {
-        hiddenAxis:[],
+        hideAxis:[],
         flipAxes: [],
         alpha: 0.7,
         bundlingStrength: 0.5,
@@ -102,6 +102,10 @@ class ParallelCoordinates extends AbstractChart {
             this.parcoords.dimensions(this._options.plots.dimensions);
         } else {
             this.parcoords.dimensions(this.sortDimensions(this._data, this._options.plots.autoSortDimensions));
+        }
+
+        if (this._options.plots.hideAxis !== null && this._options.plots.hideAxis.length > 0) {
+            this.parcoords.hideAxis(this._options.plots.hideAxis);
         }
 
         this.parcoords.render();
