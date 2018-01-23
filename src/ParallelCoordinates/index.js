@@ -15,7 +15,7 @@ import { select } from 'd3-selection';
 
 import './parallel-coordinates.css';
 import ParCoords from './ParCoords';
-
+import { extend } from './helper';
 
 const Composites = [
     'source-over',
@@ -40,7 +40,7 @@ const DefaultOptions = {
     plots: {
         hiddenAxis:[],
         flipAxes: [],
-        alpha: 0.25,
+        alpha: 0.7,
         bundlingStrength: 0.5,
         bundleDimension: null,
         composite: 'darken',
@@ -51,6 +51,8 @@ const DefaultOptions = {
         brushPredicate: 'AND',
         colorDimension: null,
         renderingMode: 'queue',
+        nullValueSeparator: "undefined", // set to "top" or "bottom"
+        nullValueSeparatorPadding: { top: 8, right: 0, bottom: 8, left: 0 },
         dimensions: null,
         autoSortDimensions: 'asc',
         evenScale: null
@@ -63,7 +65,6 @@ class ParallelCoordinates extends AbstractChart {
         super(canvasId, _userOptions);
         this.parcoords;
     }
-
 
     render (_data) {
         this.data(_data);
@@ -78,31 +79,23 @@ class ParallelCoordinates extends AbstractChart {
     update() {
         super.update();
 
-        this.parcoords = ParCoords()(this._containerId)
-            .data(this._data)
-            .hideAxis(this._options.plots.hiddenAxis)
-            .alpha(this._options.plots.alpha)
-            .composite(this._options.plots.composite)
-            .margin(this._options.chart.margin)
-            .mode(this._options.plots.renderingMode)
-            .evenScale(this._options.plots.evenScale)
-            .shadows()
+        const config = extend({}, this._options.plots);
+        config.data = this._data;
+        this.parcoords = ParCoords(config)(this._containerId);
 
-        this.parcoords.color( (d)=> {
-            return this._color(d[this._options.plots.colorDimension]);
-        });
-
-        // Bundling
-        if (check(this._options.plots.bundleDimension) === true) {
-            this.parcoords.bundling(this._options.plots.bundleDimension);
-        }
-
+        this.parcoords.evenScale(this._options.plots.evenScale)
 
         // Color
         let dimensions = keys(this.parcoords.dimensions());
         if ((check(this._options.plots.colorDimension) === false) && dimensions.length > 0) {
-            this._options.plots.colorDimension = dimensions[0];
+            if (dimensions.length > 0) {
+                this._options.plots.colorDimension = dimensions[0];
+            } else {
+                throw new Error('no dimensions are found')
+            }
         }
+
+        this.parcoords.color(d=> this._color(d[this._options.plots.colorDimension]));
 
         // dimensions
         if ((check(this._options.plots.dimensions) === true) ) {
