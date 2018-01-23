@@ -38,6 +38,8 @@ const DefaultOptions = {
     },
     color: DefaultCategoricalColor,
     plots: {
+        defaultColor: '#1f78b4',
+        colorDimension: null,
         hideAxis:[],
         flipAxes: [],
         alpha: 0.7,
@@ -49,7 +51,6 @@ const DefaultOptions = {
         animationTime: 1100, // How long it takes to flip the axis when you double click
         brushMode: '1D-axes',
         brushPredicate: 'AND',
-        colorDimension: null,
         mode: 'queue',
         nullValueSeparator: "undefined", // set to "top" or "bottom"
         nullValueSeparatorPadding: { top: 8, right: 0, bottom: 8, left: 0 },
@@ -89,17 +90,10 @@ class ParallelCoordinates extends AbstractChart {
 
         this.parcoords.evenScale(this._options.plots.evenScale)
 
-        // Color
-        let dimensions = keys(this.parcoords.dimensions());
-        if ((check(this._options.plots.colorDimension) === false) && dimensions.length > 0) {
-            if (dimensions.length > 0) {
-                this._options.plots.colorDimension = dimensions[0];
-            } else {
-                throw new Error('no dimensions are found')
-            }
-        }
 
-        this.parcoords.color(d=> this._color(d[this._options.plots.colorDimension]));
+        this.parcoords.color(d=> this._options.plots.colorDimension
+            ? this._color(d[this._options.plots.colorDimension])
+            : this._options.plots.defaultColor);
 
         // dimensions
         if ((check(this._options.plots.dimensions) === true) ) {
@@ -194,6 +188,12 @@ class ParallelCoordinates extends AbstractChart {
 
     colorDimension(_dimension) {
         this._options.plots.colorDimension = _dimension;
+
+        if (check(_dimension) === false) {
+            this.parcoords.color( d => this._options.plots.defaultColor).render();
+            return;
+        }
+
         let _dim = parcoords.dimensions()[_dimension];
 
         if (!_dim) {
