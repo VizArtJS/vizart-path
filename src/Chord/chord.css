@@ -1,0 +1,10 @@
+.vizart-chart path.chord {
+    -webkit-backface-visibility: hidden;
+    fill-opacity: .67;
+    stroke: none;
+}
+
+.vizart-chart text,
+.vizart-chart  .group path {
+    cursor: pointer;
+}

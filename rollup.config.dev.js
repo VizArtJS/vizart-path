@@ -9,7 +9,7 @@ import serve from 'rollup-plugin-serve';
 import json from 'rollup-plugin-json';
 
 export default {
-    entry: 'src/index.js',
+    input: 'src/index.js',
     plugins: [
         json({
             exclude: [ 'node_modules' ],
@@ -25,11 +25,7 @@ export default {
             browser: true,
             extensions: ['.js']
         }),
-        commonjs({
-            namedExports: {
-                'node_modules/simple-statistics/index.js': [ 'ckmeans', 'equalIntervalBreaks' ]
-            }
-        }),
+        commonjs(),
         serve({
             open: true,
             verbose: true,
@@ -44,12 +40,12 @@ export default {
         })
     ],
     external: [],
-    targets: [
+    output: [
         {
-            dest: 'dist/vizart-path.standalone.js',
+            file: 'dist/vizart-path.standalone.js',
             format: 'umd',
-            moduleName: 'VizArtPath',
-            sourceMap: true
+            name: 'VizArtPath',
+            sourcemap: true
         }
     ]
 };

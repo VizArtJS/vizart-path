@@ -67,25 +67,24 @@
 //                brushMode: 'angular',
 //                brushMode: '1D-axes-multi'
 
+            },
+            color: {
+                scheme: 'Inferno',
+                type: 'categorical'
             }
         };
 
-        var chart = new VizArtPath.ParallelCoordinate('#bar', options);
+        var chart = new VizArtPath.ParallelCoordinates('#bar', options);
 
         //http://astrostatistics.psu.edu/datasets/COMBO17.html
 //        d3.csv('./assets/COMBO17.csv', (err, res)=>{
         d3.csv('./assets/nutrients.csv', (err, res)=>{
-//            var line1 = res[0];
-//            let keyList = _.keys(line1);
-//
-//            options.analytics.nodeList = keyList.map(function(d){
-//                return {
-//                    field: d,
-//                    type: 'string'
-//                }
-//            });
 
             chart.render(res);
+
+            console.log(chart._color.domain());
+            console.log(chart._color.range());
+
 
             // live update button is clicked
             $('#update').click(function(){
@@ -95,41 +94,25 @@
         });
 
 
-
-
-
         // change color
         $('#color1').click(function(){
-            options.color.name = "BuGn";
+            options.color.scheme = "BuGn";
             chart.transitionColor(options.color);
         });
 
         $('#color2').click(function(){
-            options.color.name = "Blues";
+            options.color.scheme = "Blues";
             chart.transitionColor(options.color)
         });
 
         $('#color3').click(function(){
-            options.color.name = "Warm";
+            options.color.scheme = "Warm";
             chart.transitionColor(options.color)
         });
 
         $('#color4').click(function(){
-            options.color.name = "Cubehelix";
+            options.color.scheme = "Cubehelix";
             chart.transitionColor(options.color);
-        });
-
-        $('#a1').click(function(){
-            chart.sort('age', 'asc');
-        })
-        $('#a2').click(function(){
-            chart.sort('age', 'desc');
-        });
-        $('#a3').click(function(){
-            chart.sort('performance', 'asc');
-        });
-        $('#a4').click(function(){
-            chart.sort('performance', 'desc');
         });
 
 
