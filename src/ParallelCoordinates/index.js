@@ -50,7 +50,7 @@ const DefaultOptions = {
         brushMode: '1D-axes',
         brushPredicate: 'AND',
         colorDimension: null,
-        renderingMode: 'queue',
+        mode: 'queue',
         nullValueSeparator: "undefined", // set to "top" or "bottom"
         nullValueSeparatorPadding: { top: 8, right: 0, bottom: 8, left: 0 },
         dimensions: null,
@@ -81,6 +81,10 @@ class ParallelCoordinates extends AbstractChart {
 
         const config = extend({}, this._options.plots);
         config.data = this._data;
+        if(!config.margin) {
+            config.margin = this._options.chart.margin;
+        }
+
         this.parcoords = ParCoords(config)(this._containerId);
 
         this.parcoords.evenScale(this._options.plots.evenScale)
@@ -157,8 +161,8 @@ class ParallelCoordinates extends AbstractChart {
         this.parcoords.brushMode(_mode);
     };
 
-    renderingMode(_mode) {
-        this._options.plots.renderingMode = _mode;
+    mode(_mode) {
+        this._options.plots.mode = _mode;
         this.parcoords.mode(_mode);
     };
 

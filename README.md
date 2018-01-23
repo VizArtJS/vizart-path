@@ -237,7 +237,7 @@ Options spec
         brushMode: '1D-axes',
         brushPredicate: 'AND',
         colorDimension: null,
-        renderingMode: 'queue',
+        mode: 'queue',
         dimensions: null,
         autoSortDimensions: 'asc',
         evenScale: null
