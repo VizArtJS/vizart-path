@@ -51,8 +51,6 @@ const DefaultOptions = {
     buffMargin: 1,
     minHeight: 14,
     gap: 110,
-    gapEdge: 140,
-    mainRectGap: 10,
   },
 };
 
