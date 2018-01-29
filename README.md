@@ -59,11 +59,11 @@ npm run test:cover  // run tests and view coverage report
 ```
 
 ## API
-* [Chord](./chord)
-* [Sankey](./sankey)
-* [Parallel Coordinates](./parallel-coordinates)
-* [Bi Partite](./bi-partite)
-* [Stretched Chord](./stretched)
+* [Chord](https://github.com/VizArtJS/vizart-path/wiki/chord)
+* [Sankey](https://github.com/VizArtJS/vizart-path/wiki/sankey)
+* [Parallel Coordinates](https://github.com/VizArtJS/vizart-path/wiki/parallel-coordinates)
+* [Bi Partite](https://github.com/VizArtJS/vizart-path/wiki/bi-partite)
+* [Stretched Chord](https://github.com/VizArtJS/vizart-path/wiki/stretched-chord)
 
 ## Credits
 My works is based on other people's awesome visualizations:
