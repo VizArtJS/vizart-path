@@ -1,4 +1,5 @@
 import { sum } from 'd3-array';
+import calculatePosition from './calculatePosition';
 
 class PartiteLayout {
   constructor(_data, _height, _buffMargin, _minHeight) {
@@ -12,7 +13,7 @@ class PartiteLayout {
     let layout = {};
 
     layout.mainBars = [
-      this._calculatePosition(
+      calculatePosition(
         this.data.data[0].map(d => {
           return sum(d);
         }),
@@ -21,7 +22,7 @@ class PartiteLayout {
         this.buffMargin,
         this.minHeight
       ),
-      this._calculatePosition(
+      calculatePosition(
         this.data.data[1].map(d => {
           return sum(d);
         }),
@@ -35,7 +36,7 @@ class PartiteLayout {
     layout.subBars = [[], []];
     layout.mainBars.forEach((pos, p) => {
       pos.forEach((bar, i) => {
-        this._calculatePosition(
+        calculatePosition(
           this.data.data[p][i],
           bar.y,
           bar.y + bar.h,
@@ -72,37 +73,6 @@ class PartiteLayout {
     layout.keys = this.data.keys;
 
     return layout;
-  }
-
-  _calculatePosition(a, s, e, b, m) {
-    let total = sum(a);
-
-    let _sum = 0,
-      neededHeight = 0,
-      leftoverHeight = e - s - 2 * b * a.length;
-    let ret = [];
-
-    a.forEach(function(d) {
-      let v = {};
-      v.percent = total == 0 ? 0 : d / total;
-      v.value = d;
-      v.height = Math.max(v.percent * (e - s - 2 * b * a.length), m);
-      v.height == m ? (leftoverHeight -= m) : (neededHeight += v.height);
-      ret.push(v);
-    });
-
-    let scaleFact = leftoverHeight / Math.max(neededHeight, 1);
-
-    ret.forEach(d => {
-      d.percent = scaleFact * d.percent;
-      d.height = d.height == m ? m : d.height * scaleFact;
-      d.middle = _sum + b + d.height / 2;
-      d.y = s + d.middle - d.percent * (e - s - 2 * b * a.length) / 2;
-      d.h = d.percent * (e - s - 2 * b * a.length);
-      d.percent = total == 0 ? 0 : d.value / total;
-      _sum += 2 * b + d.height;
-    });
-    return ret;
   }
 
   data(_data) {
