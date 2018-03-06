@@ -15,7 +15,6 @@ import { select } from 'd3-selection';
 
 import './parallel-coordinates.css';
 import ParCoords from './ParCoords';
-import { extend } from './helper';
 
 const Composites = [
   'source-over',
@@ -79,7 +78,7 @@ class ParallelCoordinates extends AbstractChart {
   update() {
     super.update();
 
-    const config = extend({}, this._options.plots);
+    const config = Object.assign({}, this._options.plots);
     config.data = this._data;
     if (!config.margin) {
       config.margin = this._options.chart.margin;
