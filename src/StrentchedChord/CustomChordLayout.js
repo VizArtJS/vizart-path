@@ -18,6 +18,7 @@ const CustomChordLayout = () => {
     sortGroups,
     sortSubgroups,
     sortChords;
+
   function relayout() {
     let subgroups = {},
       groupSums = [],

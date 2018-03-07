@@ -32,7 +32,7 @@ const partitelLayout = (data, height, buffMargin, minHeight) => {
         (sBar, j) => {
           sBar.key1 = p === 0 ? i : j;
           sBar.key2 = p === 0 ? j : i;
-            layoutApi.subBars[p].push(sBar);
+          layoutApi.subBars[p].push(sBar);
         }
       );
     });
