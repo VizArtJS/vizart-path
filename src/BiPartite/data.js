@@ -1,8 +1,7 @@
 import { set } from 'd3-collection';
-import cloneDeep from 'lodash-es/cloneDeep';
 
 const _buildPartite = (data, _p) => {
-  let sData = {};
+  const sData = {};
 
   sData.keys = [
     set(
@@ -54,18 +53,14 @@ const _buildPartite = (data, _p) => {
 };
 
 const buildPartiteData = (_data, _opt) => {
-  let chartData = cloneDeep(_data);
+  const chartData = _data.slice();
 
-  let temp = [];
-
-  for (let item of chartData) {
-    temp.push([
-      item[_opt.data.source.accessor],
-      item[_opt.data.target.accessor],
-      +item[_opt.data.links[0].accessor],
-      +item[_opt.data.links[1].accessor],
-    ]);
-  }
+  const temp = chartData.map(d=> [
+      d[_opt.data.source.accessor],
+      d[_opt.data.target.accessor],
+      +d[_opt.data.links[0].accessor],
+      +d[_opt.data.links[1].accessor],
+  ]);
 
   return [
     {

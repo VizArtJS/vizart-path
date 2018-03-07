@@ -11,7 +11,7 @@ import { format } from 'd3-format';
 import { interpolate } from 'd3-interpolate';
 
 import buildPartiteData from './data';
-import PartiteLayout from './layout';
+import partiteLayout from './layout';
 
 const DefaultOptions = {
   chart: { type: 'biPartite' },
@@ -105,12 +105,12 @@ class BiPartite extends AbstractChart {
           'translate(' + this._options.chart.width / 2 * s + ',0)'
         );
 
-      let partite = new PartiteLayout(
+      const partite = partiteLayout(
         biP.data,
         this._options.chart.innerHeight,
         this._options.plots.buffMargin,
         this._options.plots.minHeight
-      ).layout();
+      );
 
       this._drawPart(partite, biP.id, 0);
       this._drawPart(partite, biP.id, 1);
@@ -165,12 +165,12 @@ class BiPartite extends AbstractChart {
       });
 
       that._transitionLayout(
-        new PartiteLayout(
+        partiteLayout(
           newData,
           that._options.chart.innerHeight,
           that._options.plots.buffMargin,
           that._options.plots.minHeight
-        ).layout(),
+        ),
         k.id
       );
 
