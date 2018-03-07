@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash-es/cloneDeep';
 import groupBy from 'lodash-es/groupBy';
 import keys from 'lodash-es/keys';
 
@@ -7,7 +6,7 @@ const transformMatrix = (_data, _opt) => {
   const _targetAccessor = _opt.data.target.accessor;
   const _linkAccessor = _opt.data.link.accessor;
   const emptyPerc = _opt.plots.emptyPercent;
-  let chartData = cloneDeep(_data);
+  const chartData = _data.slice();
 
   let sourceGroup = groupBy(chartData, _sourceAccessor);
   let targetGroup = groupBy(chartData, _targetAccessor);
