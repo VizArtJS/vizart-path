@@ -4,31 +4,17 @@ const _buildPartite = (data, _p) => {
   const sData = {};
 
   sData.keys = [
-    set(
-      data.map(d => {
-        return d[0];
-      })
-    )
+    set(data.map(d => d[0]))
       .values()
-      .sort((a, b) => {
-        return a < b ? -1 : a > b ? 1 : 0;
-      }),
-    set(
-      data.map(d => {
-        return d[1];
-      })
-    )
+      .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)),
+    set(data.map(d => d[1]))
       .values()
-      .sort((a, b) => {
-        return a < b ? -1 : a > b ? 1 : 0;
-      }),
+      .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)),
   ];
 
   sData.data = [
     sData.keys[0].map(d => {
-      return sData.keys[1].map(v => {
-        return 0;
-      });
+      return sData.keys[1].map(v => 0);
     }),
     sData.keys[1].map(d => {
       return sData.keys[0].map(v => {
@@ -52,14 +38,14 @@ const _buildPartite = (data, _p) => {
   return sData;
 };
 
-const buildPartiteData = (_data, _opt) => {
-  const chartData = _data.slice();
+const buildPartiteData = (data, opt) => {
+  const chartData = data.slice();
 
   const temp = chartData.map(d => [
-    d[_opt.data.source.accessor],
-    d[_opt.data.target.accessor],
-    +d[_opt.data.links[0].accessor],
-    +d[_opt.data.links[1].accessor],
+    d[opt.data.source.accessor],
+    d[opt.data.target.accessor],
+    +d[opt.data.links[0].accessor],
+    +d[opt.data.links[1].accessor],
   ]);
 
   return [
@@ -67,18 +53,18 @@ const buildPartiteData = (_data, _opt) => {
       data: _buildPartite(temp, 2),
       id: 'part_01',
       header: [
-        _opt.data.source.name,
-        _opt.data.target.name,
-        _opt.data.links[0].name,
+        opt.data.source.name,
+        opt.data.target.name,
+        opt.data.links[0].name,
       ],
     },
     {
       data: _buildPartite(temp, 3),
       id: 'part_02',
       header: [
-        _opt.data.source.name,
-        _opt.data.target.name,
-        _opt.data.links[1].name,
+        opt.data.source.name,
+        opt.data.target.name,
+        opt.data.links[1].name,
       ],
     },
   ];

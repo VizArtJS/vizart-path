@@ -87,32 +87,40 @@
             },
         };
 
+        var chart = null;
         d3.csv('./assets/sales_flow_cn.csv', (err, res)=>{
 
-            var chart = new VizArtPath.BiPartite('#bar', options);
+            chart = VizArtPath.biPartite('#bar', options);
             chart.render(res);
         });
 
 
+
+
         // change color
         $('#color1').click(function(){
-            options.color.name = "BuGn";
-            chart.transitionColor(options.color);
+            var opt = chart.options();
+            opt.color.scheme = "BuGn";
+            chart.color(opt.color);
         });
 
         $('#color2').click(function(){
-            options.color.name = "Blues";
-            chart.transitionColor(options.color)
+            var opt = chart.options();
+            opt.color.scheme = "Blues";
+            chart.color(opt.color)
         });
 
         $('#color3').click(function(){
-            options.color.name = "Warm";
-            chart.transitionColor(options.color)
+            var opt = chart.options();
+            opt.color.scheme = "Warm";
+            chart.color(opt.color)
+
         });
 
         $('#color4').click(function(){
-            options.color.name = "Cubehelix";
-            chart.transitionColor(options.color);
+            var opt = chart.options();
+            opt.color.scheme = "Cubehelix";
+            chart.color(opt.color)
         });
 
         $('#a1').click(function(){

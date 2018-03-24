@@ -41,7 +41,7 @@
     "d3-transition": "^1.1.1",
     "requestanimationframe": "0.0.23",
     "sylvester": "0.0.21",
-    "vizart-core": "^1.2.2"
+    "vizart-core": "^2.0.0-rc.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -51,9 +51,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "babelrc-rollup": "^3.0.0",
-    "eslint": "^4.19.0",
+    "eslint": "^4.19.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^5.0.4",
+    "mocha": "^5.0.5",
     "prettier": "1.11.1",
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
