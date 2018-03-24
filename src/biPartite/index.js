@@ -1,11 +1,8 @@
 import {
   svgLayer,
-  DefaultCategoricalColor,
   categoricalColor,
   mergeBase,
   apiRenderSVG,
-  apiUpdate as apiUpdateSVG,
-  Globals,
 } from 'vizart-core';
 
 import { transition } from 'd3-transition';
@@ -18,47 +15,7 @@ import drawHeader from './draw-header';
 
 import buildPartiteData from './data';
 import partiteLayout from './layout';
-
-const DefaultOptions = {
-  chart: { type: 'biPartite' },
-  animation: {
-    duration: {
-      partite: 500,
-    },
-  },
-  data: {
-    source: {
-      name: null,
-      type: Globals.DataType.STRING,
-      accessor: null,
-    },
-
-    target: {
-      name: null,
-      type: Globals.DataType.STRING,
-      accessor: null,
-    },
-
-    links: [
-      {
-        name: null,
-        type: Globals.DataType.NUMBER,
-        accessor: null,
-      },
-      {
-        name: null,
-        type: Globals.DataType.NUMBER,
-        accessor: null,
-      },
-    ],
-  },
-  color: DefaultCategoricalColor,
-  plots: {
-    buffMargin: 1,
-    minHeight: 14,
-    gap: 110,
-  },
-};
+import DefaultOptions from './options';
 
 const composers = {
   opt: opt => mergeBase(DefaultOptions, opt),
