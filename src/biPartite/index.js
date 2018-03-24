@@ -1,5 +1,6 @@
 import {
   svgLayer,
+  factory,
   categoricalColor,
   mergeBase,
   apiRenderSVG,
@@ -82,16 +83,4 @@ const apiColor = state => ({
   },
 });
 
-const biPartite = (id, opt) => {
-  const baseLayer = svgLayer(id, opt, composers);
-
-  const chart = Object.assign(
-    baseLayer,
-    apiRender(baseLayer),
-    apiUpdate(baseLayer)
-  );
-
-  return Object.assign(chart, apiColor(chart));
-};
-
-export default biPartite;
+export default factory(svgLayer, composers, [apiRender, apiUpdate, apiColor]);
