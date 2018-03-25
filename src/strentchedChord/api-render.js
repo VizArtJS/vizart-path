@@ -1,133 +1,67 @@
-import {
-  AbstractChart,
-  wrapSVGText,
-  DefaultCategoricalColor,
-  mergeBase,
-} from 'vizart-core';
-import { descending } from 'd3-array';
-import { arc } from 'd3-shape';
-
-import StretchedChordLayout from './StretchedChordLayout';
-import CustomChordLayout from './CustomChordLayout';
-
 import transformMatrix from './matrix';
+import { arc } from 'd3-shape';
+import { descending } from 'd3-array';
+import { wrapSVGText, apiRenderSVG } from 'vizart-core';
+import CustomChordLayout from './CustomChordLayout';
+import StretchedChordLayout from './StretchedChordLayout';
 
-const DefaultOptions = {
-  chart: {
-    type: 'stretched-chord',
-  },
-  data: {
-    source: {
-      accessor: null,
-      name: null,
-      formatter: null,
-    },
-    target: {
-      accessor: null,
-      name: null,
-      formatter: null,
-    },
+const apiRender = state => ({
+  render(data) {
+    apiRenderSVG(state).render(data);
 
-    link: {
-      accessor: null,
-      name: null,
-      formatter: null,
-    },
-  },
-  color: DefaultCategoricalColor,
-  plots: {
-    innerRadiusRatio: 0.95,
-    opacityDefault: 0.7, //default opacity of chords
-    opacityLow: 0.02, //hover opacity of those chords not hovered over
-    pullOutSize: 150, //How many pixels should the two halves be pulled apart
-    fontSize: '16px',
-    emptyPercent: 0.01, //What % of the circle should become empty
-    chordPadding: 0.02,
-  },
-};
+    const { _options, _data, _svg, _isMobileSize } = state;
 
-class StretchedChord extends AbstractChart {
-  constructor(canvasId, _userOptions) {
-    super(canvasId, _userOptions);
-
-    this.outerRadius =
-      Math.min(
-        this._options.chart.innerWidth,
-        this._options.chart.innerHeight
-      ) / 2;
-  }
-
-  createOptions(_userOpt) {
-    return mergeBase(DefaultOptions, _userOpt);
-  }
-
-  render(_data) {
-    super.render(_data);
-
-    let outerRadius =
-      Math.min(
-        this._options.chart.innerWidth,
-        this._options.chart.innerHeight
-      ) /
-        2 -
-      (this._isMobileSize ? 80 : 100);
-    let innerRadius = outerRadius * this._options.plots.innerRadiusRatio;
-    let opacityDefault = this._options.plots.opacityDefault;
-    let opacityLow = this._options.plots.opacityLow;
-    let pullOutSize = this._options.plots.pullOutSize;
+    const outerRadius =
+      Math.min(_options.chart.innerWidth, _options.chart.innerHeight) / 2 -
+      (_isMobileSize ? 80 : 100);
+    const innerRadius = outerRadius * _options.plots.innerRadiusRatio;
+    const opacityDefault = _options.plots.opacityDefault;
+    const opacityLow = _options.plots.opacityLow;
+    const pullOutSize = _options.plots.pullOutSize;
 
     //////////////////////////////////////////////////////
     //////////////////// Titles on top ///////////////////
     //////////////////////////////////////////////////////
-    let wrapper = this._svg
+    const wrapper = _svg
       .append('g')
       .attr('class', 'chordWrapper')
       .attr(
         'transform',
         'translate(' +
-          this._options.chart.width / 2 +
+          _options.chart.width / 2 +
           ',' +
-          this._options.chart.height / 2 +
+          _options.chart.height / 2 +
           ')'
       );
 
-    let titleWrapper = this._svg.append('g').attr('class', 'title-rapper');
-    let titleOffset = this._isMobileSize ? 15 : 40;
-    let titleSeparate = this._isMobileSize ? 30 : 0;
+    const titleWrapper = _svg.append('g').attr('class', 'title-rapper');
+    const titleOffset = _isMobileSize ? 15 : 40;
+    const titleSeparate = _isMobileSize ? 30 : 0;
 
-    let width = this._options.chart.innerWidth;
+    const width = _options.chart.innerWidth;
 
     //Title	top left
     titleWrapper
       .append('text')
       .attr('class', 'title left')
-      .style('font-size', this._options.plots.fontSize)
+      .style('font-size', _options.plots.fontSize)
       .attr(
         'x',
-        width / 2 +
-          this._options.chart.margin.left -
-          outerRadius -
-          titleSeparate
+        width / 2 + _options.chart.margin.left - outerRadius - titleSeparate
       )
       .attr('y', titleOffset)
-      .text(this._options.data.source.name);
+      .text(_options.data.source.name);
     titleWrapper
       .append('line')
       .attr('class', 'titleLine left')
       .attr(
         'x1',
-        (width / 2 +
-          this._options.chart.margin.left -
-          outerRadius -
-          titleSeparate) *
+        (width / 2 + _options.chart.margin.left - outerRadius - titleSeparate) *
           0.6
       )
       .attr(
         'x2',
-        (width / 2 +
-          this._options.chart.margin.left -
-          outerRadius -
-          titleSeparate) *
+        (width / 2 + _options.chart.margin.left - outerRadius - titleSeparate) *
           1.4
       )
       .attr('y1', titleOffset + 8)
@@ -136,34 +70,25 @@ class StretchedChord extends AbstractChart {
     titleWrapper
       .append('text')
       .attr('class', 'title right')
-      .style('font-size', this._options.plots.fontSize)
+      .style('font-size', _options.plots.fontSize)
       .attr(
         'x',
-        width / 2 +
-          this._options.chart.margin.left +
-          outerRadius +
-          titleSeparate
+        width / 2 + _options.chart.margin.left + outerRadius + titleSeparate
       )
       .attr('y', titleOffset)
-      .text(this._options.data.target.name);
+      .text(_options.data.target.name);
     titleWrapper
       .append('line')
       .attr('class', 'titleLine right')
       .attr(
         'x1',
-        (width / 2 +
-          this._options.chart.margin.left -
-          outerRadius -
-          titleSeparate) *
+        (width / 2 + _options.chart.margin.left - outerRadius - titleSeparate) *
           0.6 +
           2 * (outerRadius + titleSeparate)
       )
       .attr(
         'x2',
-        (width / 2 +
-          this._options.chart.margin.left -
-          outerRadius -
-          titleSeparate) *
+        (width / 2 + _options.chart.margin.left - outerRadius - titleSeparate) *
           1.4 +
           2 * (outerRadius + titleSeparate)
       )
@@ -223,66 +148,57 @@ class StretchedChord extends AbstractChart {
     ////////////////////////// Data ////////////////////////////
     ////////////////////////////////////////////////////////////
 
-    let chordData = transformMatrix(this._data, this._options);
-    console.log(chordData);
-    let Names = chordData.rowLabel;
-    let matrix = chordData.matrix;
+    const chordData = transformMatrix(_data, _options);
 
     //Calculate how far the Chord Diagram needs to be rotated clockwise to make the dummy
     //invisible chord center vertically
-    let offset = chordData.offset;
+    const { rowLabel, matrix, offset } = chordData;
 
-    let startAngle = d => {
-      return d.startAngle + offset;
-    };
-    let endAngle = d => {
-      return d.endAngle + offset;
-    };
+    const startAngle = d => d.startAngle + offset;
+    const endAngle = d => d.endAngle + offset;
 
     // Returns an event handler for fading a given chord group
-    let fade = opacity => {
+    const fade = opacity => {
       return (d, i) => {
         wrapper
           .selectAll('path.chord')
-          .filter(d => {
-            return (
+          .filter(
+            d =>
               d.source.index !== i &&
               d.target.index !== i &&
-              Names[d.source.index] !== ''
-            );
-          })
+              rowLabel[d.source.index] !== ''
+          )
           .transition('fadeOnArc')
           .style('opacity', opacity);
       };
     };
 
     // Fade function when hovering over chord
-    let fadeOnChord = d => {
-      let chosen = d;
+    const fadeOnChord = d => {
       wrapper
         .selectAll('path.chord')
         .transition('fadeOnChord')
-        .style('opacity', d => {
-          return d.source.index === chosen.source.index &&
-            d.target.index === chosen.target.index
+        .style('opacity', e => {
+          return e.source.index === d.source.index &&
+            e.target.index === d.target.index
             ? opacityDefault
             : opacityLow;
         });
     };
 
     //Custom sort function of the chords to keep them in the original order
-    let _chordLayout = CustomChordLayout() //d3.chord()
-      .padding(this._options.plots.chordPadding)
+    const _chordLayout = CustomChordLayout() //d3.chord()
+      .padding(_options.plots.chordPadding)
       .sortChords(descending) //which chord should be shown on top when chords cross. Now the biggest chord is at the bottom
       .matrix(matrix);
 
-    let _arc = arc()
+    const _arc = arc()
       .innerRadius(innerRadius)
       .outerRadius(outerRadius)
       .startAngle(startAngle) //startAngle and endAngle now include the offset in degrees
       .endAngle(endAngle);
 
-    let _chordPath = StretchedChordLayout() //Call the stretched chord function
+    const _chordPath = StretchedChordLayout() //Call the stretched chord function
       .radius(innerRadius)
       .startAngle(startAngle)
       .endAngle(endAngle)
@@ -292,7 +208,7 @@ class StretchedChord extends AbstractChart {
     //////////////////// Draw outer Arcs ///////////////////////
     ////////////////////////////////////////////////////////////
 
-    let g = wrapper
+    const g = wrapper
       .selectAll('g.group')
       .data(_chordLayout.groups)
       .enter()
@@ -303,15 +219,9 @@ class StretchedChord extends AbstractChart {
 
     g
       .append('path')
-      .style('stroke', (d, i) => {
-        return Names[i] === '' ? 'none' : '#00A1DE';
-      })
-      .style('fill', (d, i) => {
-        return Names[i] === '' ? 'none' : '#00A1DE';
-      })
-      .style('pointer-events', (d, i) => {
-        return Names[i] === '' ? 'none' : 'auto';
-      })
+      .style('stroke', (d, i) => (rowLabel[i] === '' ? 'none' : '#00A1DE'))
+      .style('fill', (d, i) => (rowLabel[i] === '' ? 'none' : '#00A1DE'))
+      .style('pointer-events', (d, i) => (rowLabel[i] === '' ? 'none' : 'auto'))
       .attr('d', _arc)
       .attr('transform', (d, i) => {
         //Pull the two slices apart
@@ -320,24 +230,20 @@ class StretchedChord extends AbstractChart {
       });
 
     ////////////////////////////////////////////////////////////
-    ////////////////////// Append Names ////////////////////////
+    ////////////////////// Append rowLabel ////////////////////////
     ////////////////////////////////////////////////////////////
 
     //The text also needs to be displaced in the horizontal directions
     //And also rotated with the offset in the clockwise direction
     g
       .append('text')
-      .each(d => {
-        d.angle = (d.startAngle + d.endAngle) / 2 + offset;
-      })
+      .each(d => (d.angle = (d.startAngle + d.endAngle) / 2 + offset))
       .attr('dy', '.35em')
       .attr('class', 'titles')
-      .style('font-size', this._isMobileSize ? '8px' : '10px')
-      .attr('text-anchor', d => {
-        return d.angle > Math.PI ? 'end' : null;
-      })
+      .style('font-size', _isMobileSize ? '8px' : '10px')
+      .attr('text-anchor', d => (d.angle > Math.PI ? 'end' : null))
       .attr('transform', (d, i) => {
-        let c = _arc.centroid(d);
+        const c = _arc.centroid(d);
         return (
           'translate(' +
           (c[0] + d.pullOutSize) +
@@ -353,9 +259,7 @@ class StretchedChord extends AbstractChart {
           (d.angle > Math.PI ? 'rotate(180)' : '')
         );
       })
-      .text((d, i) => {
-        return Names[i];
-      })
+      .text((d, i) => rowLabel[i])
       .call(wrapSVGText, 100);
 
     ////////////////////////////////////////////////////////////
@@ -371,16 +275,18 @@ class StretchedChord extends AbstractChart {
       .style('stroke', 'none')
       //.style("fill", "#C4C4C4")
       .style('fill', 'url(#animatedGradient)') //An SVG Gradient to give the impression of a flow from left to right
-      .style('opacity', d => {
-        return Names[d.source.index] === '' ? 0 : opacityDefault;
-      }) //Make the dummy strokes have a zero opacity (invisible)
-      .style('pointer-events', (d, i) => {
-        return Names[d.source.index] === '' ? 'none' : 'auto';
-      }) //Remove pointer events from dummy strokes
+      .style(
+        'opacity',
+        d => (rowLabel[d.source.index] === '' ? 0 : opacityDefault)
+      ) //Make the dummy strokes have a zero opacity (invisible)
+      .style(
+        'pointer-events',
+        (d, i) => (rowLabel[d.source.index] === '' ? 'none' : 'auto')
+      ) //Remove pointer events from dummy strokes
       .attr('d', _chordPath)
       .on('mouseover', fadeOnChord)
       .on('mouseout', fade(opacityDefault));
-  }
-}
+  },
+});
 
-export default StretchedChord;
+export default apiRender;
