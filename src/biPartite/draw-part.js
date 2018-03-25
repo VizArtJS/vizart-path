@@ -70,21 +70,21 @@ const drawPart = (state, data, id, p) => {
       .attr('text-anchor', 'start');
   }
   /*
-         mainbar.append("text").attr("class","barlabel")
-         .attr("x", c1[p]).attr("y",function(d){ return d.middle+5;})
-         .text(function(d,i){ return " " + data.keys[p][i] + " ("+Math.round(100*d.percent)+"%)";})
-         .attr("text-anchor","start" );
+   mainbar.append("text").attr("class","barlabel")
+   .attr("x", c1[p]).attr("y",function(d){ return d.middle+5;})
+   .text(function(d,i){ return " " + data.keys[p][i] + " ("+Math.round(100*d.percent)+"%)";})
+   .attr("text-anchor","start" );
 
-         mainbar.append("text").attr("class","barvalue")
-         .attr("x", c2[p]).attr("y",function(d){ return d.middle+5;})
-         .text(function(d,i){ return commaFormat(round(d.value)) ;})
-         .attr("text-anchor","end");
+   mainbar.append("text").attr("class","barvalue")
+   .attr("x", c2[p]).attr("y",function(d){ return d.middle+5;})
+   .text(function(d,i){ return commaFormat(round(d.value)) ;})
+   .attr("text-anchor","end");
 
-         mainbar.append("text").attr("class","barpercent")
-         .attr("x", c3[p]).attr("y",function(d){ return d.middle+5;})
-         .text(function(d,i){ return "( "+Math.round(100*d.percent)+"%)" ;})
-         .attr("text-anchor","end").style("fill","grey");
-         */
+   mainbar.append("text").attr("class","barpercent")
+   .attr("x", c3[p]).attr("y",function(d){ return d.middle+5;})
+   .text(function(d,i){ return "( "+Math.round(100*d.percent)+"%)" ;})
+   .attr("text-anchor","end").style("fill","grey");
+   */
   _svg
     .select('#' + id)
     .select('.part' + p)
