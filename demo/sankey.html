@@ -50,7 +50,7 @@
 <script>
     $(document).ready(function () {
         $.getJSON('./assets/energy.json', function(data){
-            var sankey = new VizArtPath.Sankey('#bar', {
+            var sankey = VizArtPath.sankey('#bar', {
                 chart: {
                     margin: {
                         left: 40,
@@ -76,22 +76,22 @@
             // change color
             $('#color1').click(function(){
                 options2.color.scheme = "BuGn";
-                sankey.transitionColor(options2.color);
+                sankey.color(options2.color);
             });
 
             $('#color2').click(function(){
                 options2.color.scheme = "Blues";
-                sankey.transitionColor(options2.color)
+                sankey.color(options2.color)
             });
 
             $('#color3').click(function(){
                 options2.color.scheme = "Warm";
-                sankey.transitionColor(options2.color)
+                sankey.color(options2.color)
             });
 
             $('#color4').click(function(){
                 options2.color.scheme = "Cubehelix";
-                sankey.transitionColor(options2.color);
+                sankey.color(options2.color);
             });
 
             $('#a1').click(function(){
