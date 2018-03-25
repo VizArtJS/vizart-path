@@ -1,7 +1,7 @@
 import { sum } from 'd3-array';
 import calculatePosition from './calculatePosition';
 
-const partitelLayout = (data, height, buffMargin, minHeight) => {
+const partiteLayout = (data, height, buffMargin, minHeight) => {
   const layoutApi = {
     mainBars: null,
     subBars: [[], []],
@@ -60,4 +60,4 @@ const partitelLayout = (data, height, buffMargin, minHeight) => {
   return layoutApi;
 };
 
-export default partitelLayout;
+export default partiteLayout;

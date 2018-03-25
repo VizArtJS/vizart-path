@@ -1,9 +1,4 @@
-import {
-  svgLayer,
-  factory,
-  categoricalColor,
-  mergeBase,
-} from 'vizart-core';
+import { svgLayer, factory, categoricalColor, mergeBase } from 'vizart-core';
 
 import buildPartiteData from './data';
 import DefaultOptions from './options';

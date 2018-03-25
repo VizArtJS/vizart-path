@@ -1,10 +1,10 @@
-import {apiRenderSVG} from "vizart-core";
+import { apiRenderSVG } from 'vizart-core';
 
 const apiRender = state => ({
-    render(data) {
-        apiRenderSVG(state).render(data);
-        state.update();
-    },
+  render(data) {
+    apiRenderSVG(state).render(data);
+    state.update();
+  },
 });
 
 export default apiRender;

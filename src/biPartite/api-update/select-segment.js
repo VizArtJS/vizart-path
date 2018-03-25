@@ -1,4 +1,4 @@
-import partiteLayout from './layout';
+import partiteLayout from '../layout';
 import transitionLayout from './transition-layout';
 
 const selectSegment = (state, m, s) => {
