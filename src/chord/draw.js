@@ -38,7 +38,7 @@ const draw = state => {
     .append('text')
     .attr('dy', '.35em')
     // .on("click", (d)=> {this._groupClick(d)})
-    .on('mouseover', (d, i)=> {
+    .on('mouseover', (d, i) => {
       dimChords(_svg, d);
     })
     .on('mouseout', resetChords(_svg))
