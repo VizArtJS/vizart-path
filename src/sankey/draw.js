@@ -1,5 +1,5 @@
 import { drag } from 'd3-drag';
-import { event,select } from 'd3-selection';
+import { event, select } from 'd3-selection';
 import CircularSankey from './layout/CircularSankey';
 import VerticalSankey from './layout/VerticalSankey';
 
