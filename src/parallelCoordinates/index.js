@@ -23,7 +23,7 @@ import {
   apiResetBrushes,
 } from './api/api-delegates';
 
-import './parcoords-es/parallel-coordinates.css';
+import 'parcoord-es/dist/parcoords.css';
 import opt from './options';
 
 const composers = {

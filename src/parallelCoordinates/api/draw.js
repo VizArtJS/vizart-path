@@ -1,5 +1,5 @@
 import { select } from 'd3-selection';
-import ParCoords from '../parcoords-es';
+import ParCoords from 'parcoord-es';
 import sortDim from './sort-dim';
 
 const draw = state => {

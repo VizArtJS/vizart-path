@@ -39,6 +39,7 @@
     "d3-shape": "^1.2.0",
     "d3-timer": "^1.0.7",
     "d3-transition": "^1.1.1",
+    "parcoord-es": "^2.0.3",
     "requestanimationframe": "0.0.23",
     "sylvester": "0.0.21",
     "vizart-core": "^2.0.0"
