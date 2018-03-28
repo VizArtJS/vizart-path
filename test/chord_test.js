@@ -1,4 +1,4 @@
-import Matrix from '../src/Chord/Matrix';
+import Matrix from '../src/chord/Matrix';
 import { strictEqual } from 'assert';
 
 describe('chord', () => {

@@ -26,6 +26,10 @@
             height: 100%;
         }
 
+        body {
+            overflow-y: auto;
+        }
+
         .full-height {
             height: 100%;
         }
@@ -46,28 +50,24 @@
     </ul>
 </div>
 
-<div class="dropdown2" style="position: fixed; top: 10px; right: 10px;">
-    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Sort
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li id="a1"><a href="#">dimension asc</a></li>
-        <li id="a2"><a href="#">dim desc</a></li>
-        <li id="a3"><a href="#">metric asc</a></li>
-        <li id="a4"><a href="#">metric desc</a></li>
-    </ul>
-</div>
+<!--<div class="dropdown2" style="position: fixed; top: 10px; right: 10px;">-->
+    <!--<button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+        <!--Sort-->
+        <!--<span class="caret"></span>-->
+    <!--</button>-->
+    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+        <!--<li id="a1"><a href="#">dimension asc</a></li>-->
+        <!--<li id="a2"><a href="#">dim desc</a></li>-->
+        <!--<li id="a3"><a href="#">metric asc</a></li>-->
+        <!--<li id="a4"><a href="#">metric desc</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
 
 <div class="container full-height">
     <div class="row full-height">
         <div class="col-lg-2 col-md-2">
-            <div class="row" style="height: 200px">
 
-
-            </div>
-
-            <div class="row" style="height: calc(100% - 200px)">
+            <div class="row" style="margin-top: 10px">
                 <ul id="year-list" class="list-group full-height" style="overflow-y: auto">
                 </ul>
             </div>
@@ -90,7 +90,7 @@
             });
             var years = d3.range(2005, 1865, -5);
 
-            var chord = new VizArtPath.Chord('#bar', {
+            var chord = VizArtPath.chord('#bar', {
                 chart: {
                     margin: {
                         top: 90,
@@ -151,36 +151,42 @@
             // change color
             $('#color1').click(function(){
                 options2.color.scheme = ['#9e0142','#d53e4f','#f46d43','#fdae61','#fee08b','#ffffbf','#e6f598','#abdda4','#66c2a5','#3288bd','#5e4fa2'];
-                chord.transitionColor(options2.color);
+                chord.color(options2.color);
             });
 
             $('#color2').click(function(){
                 options2.color.scheme = ['#a50026','#d73027','#f46d43','#fdae61','#fee08b','#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837'];
-                chord.transitionColor(options2.color)
+                chord.color(options2.color)
             });
 
             $('#color3').click(function(){
                 options2.color.scheme = ['#a50026','#d73027','#f46d43','#fdae61','#fee090','#ffffbf','#e0f3f8','#abd9e9','#74add1','#4575b4','#313695'];
-                chord.transitionColor(options2.color)
+                chord.color(options2.color)
             });
 
             $('#color4').click(function(){
                 options2.color.scheme = ['#9C6744','#C9BEB9','#CFA07E','#C4BAA1','#C2B6BF','#121212','#8FB5AA','#85889E','#9C7989','#91919C','#242B27','#212429','#99677B','#36352B','#33332F','#2B2B2E','#2E1F13','#2B242A','#918A59','#6E676C','#6E4752','#6B4A2F','#998476','#8A968D','#968D8A','#968D96','#CC855C', '#967860','#929488','#949278','#A0A3BD','#BD93A1','#65666B','#6B5745','#6B6664','#695C52','#56695E','#69545C','#565A69','#696043','#63635C','#636150','#333131','#332820','#302D30','#302D1F','#2D302F','#CFB6A3','#362F2A'];
-                chord.transitionColor(options2.color);
+                chord.color(options2.color);
             });
 
-            $('#a1').click(function(){
-                chord.ordering('row', 'asc');
-            })
-            $('#a2').click(function(){
-                chord.ordering('row', 'desc');
-            });
-            $('#a3').click(function(){
-                chord.ordering('column', 'asc');
-            });
-            $('#a4').click(function(){
-                chord.ordering('column', 'desc');
-            });
+            // $('#a1').click(function(){
+            //     options2.ordering.name = 'row';
+            //     options2.ordering.direction = 'asc';
+            //     chord.options(options2);
+            //     chord.update();
+            // })
+            // $('#a2').click(function(){
+            //     options2.ordering.name = 'row';
+            //     options2.ordering.direction = 'desc';
+            //     chord.options(options2);
+            //     chord.update();
+            // });
+            // $('#a3').click(function(){
+            //     chord.ordering('column', 'asc');
+            // });
+            // $('#a4').click(function(){
+            //     chord.ordering('column', 'desc');
+            // });
 
         });
 
