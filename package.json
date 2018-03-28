@@ -1,7 +1,7 @@
 {
   "name": "vizart-path",
-  "version": "1.0.3",
-  "description": "VizArt: Path",
+  "version": "2.0.0",
+  "description": "VizArt Path: Chord, BiPartite, Parallel Coordinates, Sankey, Strentched Chord ...",
   "main": "dist/vizart-path.js",
   "module": "dist/vizart-path.mjs",
   "jsnext:main": "dist/vizart-path.mjs",
@@ -78,5 +78,5 @@
   ],
   "author": "Xing Yun",
   "license": "MIT",
-  "homepage": "www.vizart.org"
+  "homepage": "https://vizartjs.github.io/"
 }
