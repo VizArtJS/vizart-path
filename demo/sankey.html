@@ -33,18 +33,6 @@
     </ul>
 </div>
 
-<div class="dropdown2" style="position: fixed; top: 10px; left: 250px;">
-    <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Sort
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <li id="a1"><a href="#">dimension asc</a></li>
-        <li id="a2"><a href="#">dim desc</a></li>
-        <li id="a3"><a href="#">metric asc</a></li>
-        <li id="a4"><a href="#">metric desc</a></li>
-    </ul>
-</div>
 <div id="bar" style="width: calc(100% - 40px); height: 600px"></div>
 
 <script>
@@ -92,19 +80,6 @@
             $('#color4').click(function(){
                 options2.color.scheme = "Cubehelix";
                 sankey.color(options2.color);
-            });
-
-            $('#a1').click(function(){
-                sankey.sort('dimension', 'asc');
-            })
-            $('#a2').click(function(){
-                sankey.sort('dimension', 'desc');
-            });
-            $('#a3').click(function(){
-                sankey.sort('metric', 'asc');
-            });
-            $('#a4').click(function(){
-                sankey.sort('metric', 'desc');
             });
         });
 
