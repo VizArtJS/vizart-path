@@ -1,7 +1,7 @@
 {
   "name": "vizart-path",
-  "version": "1.0.3",
-  "description": "VizArt: Path",
+  "version": "2.0.0",
+  "description": "VizArt Path: Chord, BiPartite, Parallel Coordinates, Sankey, Strentched Chord ...",
   "main": "dist/vizart-path.js",
   "module": "dist/vizart-path.mjs",
   "jsnext:main": "dist/vizart-path.mjs",
@@ -39,9 +39,10 @@
     "d3-shape": "^1.2.0",
     "d3-timer": "^1.0.7",
     "d3-transition": "^1.1.1",
+    "parcoord-es": "^2.0.3",
     "requestanimationframe": "0.0.23",
     "sylvester": "0.0.21",
-    "vizart-core": "^1.2.2"
+    "vizart-core": "^2.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -51,9 +52,9 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "babelrc-rollup": "^3.0.0",
-    "eslint": "^4.19.0",
+    "eslint": "^4.19.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^5.0.4",
+    "mocha": "^5.0.5",
     "prettier": "1.11.1",
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
@@ -77,5 +78,5 @@
   ],
   "author": "Xing Yun",
   "license": "MIT",
-  "homepage": "www.vizart.org"
+  "homepage": "https://vizartjs.github.io/"
 }

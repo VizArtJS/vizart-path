@@ -81,7 +81,7 @@
             }
         };
 
-        var chart = new VizArtPath.ParallelCoordinates('#bar', options);
+        var chart = VizArtPath.parallelCoordinates('#bar', options);
 
         //http://astrostatistics.psu.edu/datasets/COMBO17.html
 //        d3.csv('./assets/COMBO17.csv', (err, res)=>{
@@ -100,22 +100,22 @@
         // change color
         $('#color1').click(function(){
             options.color.scheme = "BuGn";
-            chart.transitionColor(options.color);
+            chart.color(options.color);
         });
 
         $('#color2').click(function(){
             options.color.scheme = "Blues";
-            chart.transitionColor(options.color)
+            chart.color(options.color)
         });
 
         $('#color3').click(function(){
             options.color.scheme = "Warm";
-            chart.transitionColor(options.color)
+            chart.color(options.color)
         });
 
         $('#color4').click(function(){
             options.color.scheme = "Cubehelix";
-            chart.transitionColor(options.color);
+            chart.color(options.color);
         });
 
 
