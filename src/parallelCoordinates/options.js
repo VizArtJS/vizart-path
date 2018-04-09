@@ -22,7 +22,7 @@ const DefaultOptions = {
     mode: 'queue',
     nullValueSeparator: 'undefined', // set to "top" or "bottom"
     nullValueSeparatorPadding: { top: 8, right: 0, bottom: 8, left: 0 },
-    dimensions: null,
+    dimensions: {},
     autoSortDimensions: 'asc',
     evenScale: null,
   },
