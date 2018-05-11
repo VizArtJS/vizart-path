@@ -145,7 +145,9 @@ const draw = state => {
       'height',
       _options.plots.horizontal
         ? d => (d.dy > 0 ? d.dy : 0.5)
-        : _layout.nodeWidth() > 0 ? _layout.nodeWidth() : 0.5
+        : _layout.nodeWidth() > 0
+          ? _layout.nodeWidth()
+          : 0.5
     )
     .attr('width', _options.plots.horizontal ? _layout.nodeWidth() : d => d.dy)
     .style('fill', d => (d.color = _color(d.name)))
@@ -203,7 +205,9 @@ const draw = state => {
       'height',
       _options.plots.horizontal
         ? d => (d.dy > 0 ? d.dy : 0.5)
-        : _layout.nodeWidth() > 0 ? _layout.nodeWidth() : 0.5
+        : _layout.nodeWidth() > 0
+          ? _layout.nodeWidth()
+          : 0.5
     )
     .attr('width', _options.plots.horizontal ? _layout.nodeWidth() : d => d.dy)
     .style('fill', d => {

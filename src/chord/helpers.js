@@ -28,8 +28,12 @@ const dimChords = (_svg, d) => {
       'opacity',
       p =>
         d.source
-          ? p._id === d._id ? 0.9 : 0.1
-          : p.source._id === d._id || p.target._id === d._id ? 0.9 : 0.1
+          ? p._id === d._id
+            ? 0.9
+            : 0.1
+          : p.source._id === d._id || p.target._id === d._id
+            ? 0.9
+            : 0.1
     );
 };
 

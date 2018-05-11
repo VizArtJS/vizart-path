@@ -42,7 +42,13 @@ const partiteLayout = (data, height, buffMargin, minHeight) => {
       (a, b) =>
         a.key1 < b.key1
           ? -1
-          : a.key1 > b.key1 ? 1 : a.key2 < b.key2 ? -1 : a.key2 > b.key2 ? 1 : 0
+          : a.key1 > b.key1
+            ? 1
+            : a.key2 < b.key2
+              ? -1
+              : a.key2 > b.key2
+                ? 1
+                : 0
     );
   });
 
