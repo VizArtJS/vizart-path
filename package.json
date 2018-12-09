@@ -1,6 +1,6 @@
 {
   "name": "vizart-path",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "VizArt Path: Chord, BiPartite, Parallel Coordinates, Sankey, Strentched Chord ...",
   "main": "dist/vizart-path.js",
   "module": "dist/vizart-path.esm.js",
