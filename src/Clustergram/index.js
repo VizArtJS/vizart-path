@@ -4,7 +4,7 @@ import Viz from './viz';
 
 const Clustergram = args => {
   /* Main program
-     * ----------------------------------------------------------------------- */
+   * ----------------------------------------------------------------------- */
 
   // consume and validate user input
   // build giant config object
@@ -21,7 +21,7 @@ const Clustergram = args => {
   let viz = Viz(params);
 
   /* API
-     * ----------------------------------------------------------------------- */
+   * ----------------------------------------------------------------------- */
 
   return {
     find_gene: viz.search.find_entities,

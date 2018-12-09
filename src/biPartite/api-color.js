@@ -2,7 +2,22 @@ import { transition } from 'd3-transition';
 
 const apiColor = state => ({
   color(colorOpt) {
-    state._options.color = colorOpt;
+    if (!colorOpt) {
+      console.warn('color opt is null, either scheme or type is required');
+      return;
+    } else if (!colorOpt.type && !colorOpt.scheme) {
+      console.warn('invalid color opt, either scheme or type is required');
+      return;
+    }
+
+    if (colorOpt.type) {
+      state._options.color.type = colorOpt.type;
+    }
+
+    if (colorOpt.scheme) {
+      state._options.color.scheme = colorOpt.scheme;
+    }
+
     state.update();
     const { _options, _color } = state;
 

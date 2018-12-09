@@ -32,12 +32,10 @@ const mouseOnPath = state =>
     select(this)
       .transition()
       .duration(_options.animation.duration.quickUpdate)
-      .style(
-        'stroke',
-        d =>
-          _options.plots.colorfulLink
-            ? _color(d.source.name)
-            : _options.plots.linkColor
+      .style('stroke', d =>
+        _options.plots.colorfulLink
+          ? _color(d.source.name)
+          : _options.plots.linkColor
       )
       .style('stroke-opacity', 0.5);
   };

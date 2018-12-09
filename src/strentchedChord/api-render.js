@@ -217,8 +217,7 @@ const apiRender = state => ({
       .on('mouseover', fade(opacityLow))
       .on('mouseout', fade(opacityDefault));
 
-    g
-      .append('path')
+    g.append('path')
       .style('stroke', (d, i) => (rowLabel[i] === '' ? 'none' : '#00A1DE'))
       .style('fill', (d, i) => (rowLabel[i] === '' ? 'none' : '#00A1DE'))
       .style('pointer-events', (d, i) => (rowLabel[i] === '' ? 'none' : 'auto'))
@@ -235,8 +234,7 @@ const apiRender = state => ({
 
     //The text also needs to be displaced in the horizontal directions
     //And also rotated with the offset in the clockwise direction
-    g
-      .append('text')
+    g.append('text')
       .each(d => (d.angle = (d.startAngle + d.endAngle) / 2 + offset))
       .attr('dy', '.35em')
       .attr('class', 'titles')
@@ -251,7 +249,7 @@ const apiRender = state => ({
           c[1] +
           ')' +
           'rotate(' +
-          (d.angle * 180 / Math.PI - 90) +
+          ((d.angle * 180) / Math.PI - 90) +
           ')' +
           'translate(' +
           20 +
@@ -275,13 +273,11 @@ const apiRender = state => ({
       .style('stroke', 'none')
       //.style("fill", "#C4C4C4")
       .style('fill', 'url(#animatedGradient)') //An SVG Gradient to give the impression of a flow from left to right
-      .style(
-        'opacity',
-        d => (rowLabel[d.source.index] === '' ? 0 : opacityDefault)
+      .style('opacity', d =>
+        rowLabel[d.source.index] === '' ? 0 : opacityDefault
       ) //Make the dummy strokes have a zero opacity (invisible)
-      .style(
-        'pointer-events',
-        (d, i) => (rowLabel[d.source.index] === '' ? 'none' : 'auto')
+      .style('pointer-events', (d, i) =>
+        rowLabel[d.source.index] === '' ? 'none' : 'auto'
       ) //Remove pointer events from dummy strokes
       .attr('d', _chordPath)
       .on('mouseover', fadeOnChord)

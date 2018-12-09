@@ -38,17 +38,16 @@ const partiteLayout = (data, height, buffMargin, minHeight) => {
     });
   });
   layoutApi.subBars.forEach(sBar => {
-    sBar.sort(
-      (a, b) =>
-        a.key1 < b.key1
-          ? -1
-          : a.key1 > b.key1
-            ? 1
-            : a.key2 < b.key2
-              ? -1
-              : a.key2 > b.key2
-                ? 1
-                : 0
+    sBar.sort((a, b) =>
+      a.key1 < b.key1
+        ? -1
+        : a.key1 > b.key1
+        ? 1
+        : a.key2 < b.key2
+        ? -1
+        : a.key2 > b.key2
+        ? 1
+        : 0
     );
   });
 

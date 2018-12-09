@@ -34,8 +34,8 @@ const sortDim = state => (_data, _direction = 'asc') => {
       }
     }
   }
-  _dimensionList.sort(
-    (a, b) => (_direction === 'asc' ? a.localeCompare(b) : b.localeCompare(a))
+  _dimensionList.sort((a, b) =>
+    _direction === 'asc' ? a.localeCompare(b) : b.localeCompare(a)
   );
 
   let retDim = {};

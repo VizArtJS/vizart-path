@@ -9,7 +9,7 @@ import each from 'lodash-es/each';
 
 const Reorder = function(params) {
   /* Reorder the clustergram using the toggle switch
-     */
+   */
   function all_reorder(inst_order) {
     params.viz.run_trans = true;
     let row_nodes_obj = params.network_data.row_nodes;
@@ -53,8 +53,7 @@ const Reorder = function(params) {
       });
 
       // Move Row Labels
-      d3
-        .select('#row_label_zoom_container')
+      d3.select('#row_label_zoom_container')
         .selectAll('.row_label_text')
         .transition()
         .duration(2500)
@@ -64,8 +63,7 @@ const Reorder = function(params) {
         });
 
       // t.selectAll('.column')
-      d3
-        .select('#col_label_zoom_container')
+      d3.select('#col_label_zoom_container')
         .selectAll('.col_label_text')
         .transition()
         .duration(2500)
@@ -77,8 +75,7 @@ const Reorder = function(params) {
         });
 
       // reorder row_label_triangle groups
-      d3
-        .selectAll('.row_viz_group')
+      d3.selectAll('.row_viz_group')
         .transition()
         .duration(2500)
         .attr('transform', function(d) {
@@ -87,8 +84,7 @@ const Reorder = function(params) {
         });
 
       // reorder col_class groups
-      d3
-        .selectAll('.col_viz_group')
+      d3.selectAll('.col_viz_group')
         .transition()
         .duration(2500)
         .attr('transform', function(d) {
@@ -100,8 +96,7 @@ const Reorder = function(params) {
       let t = viz.get_clust_group();
 
       // reorder matrix
-      t
-        .selectAll('.row')
+      t.selectAll('.row')
         .attr('transform', function(d, i) {
           return 'translate(0,' + params.matrix.y_scale(i) + ')';
         })
@@ -111,8 +106,7 @@ const Reorder = function(params) {
         });
 
       // Move Row Labels
-      d3
-        .select('#row_label_zoom_container')
+      d3.select('#row_label_zoom_container')
         .selectAll('.row_label_text')
         .attr('transform', function(d) {
           let inst_index = indexOf(row_nodes_names, d.name);
@@ -120,8 +114,7 @@ const Reorder = function(params) {
         });
 
       // t.selectAll('.column')
-      d3
-        .select('#col_label_zoom_container')
+      d3.select('#col_label_zoom_container')
         .selectAll('.col_label_text')
         .attr('transform', function(d) {
           let inst_index = indexOf(col_nodes_names, d.name);
@@ -230,8 +223,7 @@ const Reorder = function(params) {
     }
 
     // Move Col Labels
-    d3
-      .select('#col_label_zoom_container')
+    d3.select('#col_label_zoom_container')
       .selectAll('.col_label_text')
       .transition()
       .duration(2500)
@@ -243,8 +235,7 @@ const Reorder = function(params) {
       });
 
     // reorder col_class groups
-    d3
-      .selectAll('.col_viz_group')
+    d3.selectAll('.col_viz_group')
       .transition()
       .duration(2500)
       .attr('transform', function(d) {
@@ -259,13 +250,11 @@ const Reorder = function(params) {
     // highlight selected column
     ///////////////////////////////
     // unhilight and unbold all columns (already unbolded earlier)
-    d3
-      .selectAll('.row_label_text')
+    d3.selectAll('.row_label_text')
       .select('rect')
       .style('opacity', 0);
     // highlight column name
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .style('opacity', 1);
 
@@ -358,8 +347,7 @@ const Reorder = function(params) {
     }
 
     // reorder row_label_triangle groups
-    d3
-      .selectAll('.row_viz_group')
+    d3.selectAll('.row_viz_group')
       .transition()
       .duration(2500)
       .attr('transform', function(d) {
@@ -368,8 +356,7 @@ const Reorder = function(params) {
       });
 
     // Move Row Labels
-    d3
-      .select('#row_label_zoom_container')
+    d3.select('#row_label_zoom_container')
       .selectAll('.row_label_text')
       .transition()
       .duration(2500)
@@ -381,13 +368,11 @@ const Reorder = function(params) {
     // highlight selected column
     ///////////////////////////////
     // unhilight and unbold all columns (already unbolded earlier)
-    d3
-      .selectAll('.col_label_text')
+    d3.selectAll('.col_label_text')
       .select('rect')
       .style('opacity', 0);
     // highlight column name
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .style('opacity', 1);
 
@@ -426,13 +411,12 @@ const Reorder = function(params) {
 
     let hlight_width = rel_width_hlight * params.viz.border_width;
     let hlight_height =
-      rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+      (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
     // reposition tile highlight
     ////////////////////////////////
 
     // top highlight
-    d3
-      .select('#top_hlight')
+    d3.select('#top_hlight')
       .attr('width', params.matrix.x_scale.bandwidth())
       .attr('height', hlight_height)
       .transition()
@@ -446,8 +430,7 @@ const Reorder = function(params) {
       });
 
     // left highlight
-    d3
-      .select('#left_hlight')
+    d3.select('#left_hlight')
       .attr('width', hlight_width)
       .attr('height', params.matrix.y_scale.bandwidth() - hlight_height * 0.99)
       .transition()
@@ -463,8 +446,7 @@ const Reorder = function(params) {
       });
 
     // right highlight
-    d3
-      .select('#right_hlight')
+    d3.select('#right_hlight')
       .attr('width', hlight_width)
       .attr('height', params.matrix.y_scale.bandwidth() - hlight_height * 0.99)
       .transition()
@@ -478,8 +460,7 @@ const Reorder = function(params) {
       });
 
     // bottom highlight
-    d3
-      .select('#bottom_hlight')
+    d3.select('#bottom_hlight')
       .attr('width', function() {
         return params.matrix.x_scale.bandwidth() - 1.98 * hlight_width;
       })

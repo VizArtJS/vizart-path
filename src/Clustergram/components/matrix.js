@@ -127,11 +127,10 @@ const Matrix = function(network_data, svg_elem, params) {
 
         let hlight_width = rel_width_hlight * params.viz.border_width;
         let hlight_height =
-          rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+          (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
 
         // top highlight
-        d3
-          .select(clicked_rect.parentNode)
+        d3.select(clicked_rect.parentNode)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'top_hlight')
@@ -144,8 +143,7 @@ const Matrix = function(network_data, svg_elem, params) {
           .attr('opacity', opacity_hlight);
 
         // left highlight
-        d3
-          .select(clicked_rect.parentNode)
+        d3.select(clicked_rect.parentNode)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'left_hlight')
@@ -167,8 +165,7 @@ const Matrix = function(network_data, svg_elem, params) {
           .attr('opacity', opacity_hlight);
 
         // right highlight
-        d3
-          .select(clicked_rect.parentNode)
+        d3.select(clicked_rect.parentNode)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'right_hlight')
@@ -190,8 +187,7 @@ const Matrix = function(network_data, svg_elem, params) {
           .attr('opacity', opacity_hlight);
 
         // bottom highlight
-        d3
-          .select(clicked_rect.parentNode)
+        d3.select(clicked_rect.parentNode)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'bottom_hlight')
@@ -411,7 +407,7 @@ const Matrix = function(network_data, svg_elem, params) {
 
       let hlight_width = rel_width_hlight * params.viz.border_width;
       let hlight_height =
-        rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+        (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
 
       // top highlight
       tile

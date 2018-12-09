@@ -25,7 +25,7 @@ const calculatePosition = (a, s, e, b, m) => {
     d.percent = scaleFact * d.percent;
     d.height = d.height == m ? m : d.height * scaleFact;
     d.middle = _sum + b + d.height / 2;
-    d.y = s + d.middle - d.percent * (e - s - 2 * b * a.length) / 2;
+    d.y = s + d.middle - (d.percent * (e - s - 2 * b * a.length)) / 2;
     d.h = d.percent * (e - s - 2 * b * a.length);
     d.percent = total == 0 ? 0 : d.value / total;
     _sum += 2 * b + d.height;

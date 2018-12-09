@@ -18,11 +18,10 @@ const draw = state => {
 
   state.parcoords = ParCoords(config)(_containerId);
   state.parcoords.evenScale(_options.plots.evenScale);
-  state.parcoords.color(
-    d =>
-      _options.plots.colorDimension
-        ? _color(d[_options.plots.colorDimension])
-        : _options.plots.defaultColor
+  state.parcoords.color(d =>
+    _options.plots.colorDimension
+      ? _color(d[_options.plots.colorDimension])
+      : _options.plots.defaultColor
   );
 
   // dimensions

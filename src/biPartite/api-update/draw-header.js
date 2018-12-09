@@ -23,16 +23,14 @@ const drawHeader = (state, header, id) => {
       .attr('class', 'header');
 
     if (d < 1) {
-      h
-        .append('text')
+      h.append('text')
         .text(header[d])
         .attr('x', c1[1] - 50)
         .attr('y', -10)
         .style('fill', 'grey')
         .attr('text-anchor', 'end');
     } else {
-      h
-        .append('text')
+      h.append('text')
         .text(header[d])
         .attr('x', c1[d] + 30)
         .attr('y', -10)
@@ -40,8 +38,7 @@ const drawHeader = (state, header, id) => {
         .attr('text-anchor', 'start');
     }
 
-    h
-      .append('line')
+    h.append('line')
       .attr('x1', c1[d])
       .attr('y1', -2)
       .attr('x2', c3[d])

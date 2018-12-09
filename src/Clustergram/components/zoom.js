@@ -8,7 +8,7 @@ import map from 'lodash-es/map';
 
 const Zoom = function(params) {
   /* Functions for zooming. Should be turned into a module.
-     * ----------------------------------------------------------------------- */
+   * ----------------------------------------------------------------------- */
   function zoomed() {
     // // reset the zoom translate and zoom
     // params.zoom.scale(zoom_y);
@@ -100,52 +100,42 @@ const Zoom = function(params) {
     ///////////////////////////////////////////////////
     // translate clustergram
     // viz.get_clust_group()
-    d3
-      .select('#clust_group')
-      .attr(
-        'transform',
-        'translate(' +
-          [trans_x, trans_y] +
-          ') scale(' +
-          zoom_x +
-          ',' +
-          zoom_y +
-          ')'
-      );
+    d3.select('#clust_group').attr(
+      'transform',
+      'translate(' +
+        [trans_x, trans_y] +
+        ') scale(' +
+        zoom_x +
+        ',' +
+        zoom_y +
+        ')'
+    );
 
     // transform row labels
-    d3
-      .select('#row_label_zoom_container')
-      .attr(
-        'transform',
-        'translate(' + [0, trans_y] + ') scale(' + zoom_y + ')'
-      );
+    d3.select('#row_label_zoom_container').attr(
+      'transform',
+      'translate(' + [0, trans_y] + ') scale(' + zoom_y + ')'
+    );
 
     // transform row_viz_zoom_container
     // use the offset saved in params, only zoom in the y direction
-    d3
-      .select('#row_viz_zoom_container')
-      .attr(
-        'transform',
-        'translate(' + [0, trans_y] + ') scale( 1,' + zoom_y + ')'
-      );
+    d3.select('#row_viz_zoom_container').attr(
+      'transform',
+      'translate(' + [0, trans_y] + ') scale( 1,' + zoom_y + ')'
+    );
 
     // transform col labels
     // move down col labels as zooming occurs, subtract trans_x - 20 almost works
-    d3
-      .select('#col_label_zoom_container')
-      .attr(
-        'transform',
-        'translate(' + [trans_x, 0] + ') scale(' + zoom_x + ')'
-      );
+    d3.select('#col_label_zoom_container').attr(
+      'transform',
+      'translate(' + [trans_x, 0] + ') scale(' + zoom_x + ')'
+    );
 
     // transform col_class
-    d3
-      .select('#col_viz_zoom_container')
-      .attr(
-        'transform',
-        'translate(' + [trans_x, 0] + ') scale(' + zoom_x + ',1)'
-      );
+    d3.select('#col_viz_zoom_container').attr(
+      'transform',
+      'translate(' + [trans_x, 0] + ') scale(' + zoom_x + ',1)'
+    );
 
     // reset translate vector - add back margins to trans_x and trans_y
     params.zoom.translate([
@@ -160,8 +150,7 @@ const Zoom = function(params) {
     ////////////////////////////////////
 
     if (Utils.has(params.network_data.row_nodes[0], 'value')) {
-      d3
-        .selectAll('.row_bars')
+      d3.selectAll('.row_bars')
         .attr('width', function(d) {
           let inst_value = 0;
           inst_value = params.labels.bar_scale_row(Math.abs(d.value)) / zoom_y;
@@ -281,8 +270,7 @@ const Zoom = function(params) {
         );
 
       // transform row labels
-      d3
-        .select('#row_label_zoom_container')
+      d3.select('#row_label_zoom_container')
         .transition()
         .duration(search_duration)
         .attr(
@@ -302,8 +290,7 @@ const Zoom = function(params) {
 
       // transform row_viz_zoom_container
       // use the offset saved in params, only zoom in the y direction
-      d3
-        .select('#row_viz_zoom_container')
+      d3.select('#row_viz_zoom_container')
         .transition()
         .duration(search_duration)
         .attr(
@@ -322,8 +309,7 @@ const Zoom = function(params) {
         );
 
       // transform col labels
-      d3
-        .select('#col_label_zoom_container')
+      d3.select('#col_label_zoom_container')
         .transition()
         .duration(search_duration)
         .attr(
@@ -332,8 +318,7 @@ const Zoom = function(params) {
         );
 
       // transform col_class
-      d3
-        .select('#col_viz_zoom_container')
+      d3.select('#col_viz_zoom_container')
         .transition()
         .duration(search_duration)
         .attr(
@@ -364,8 +349,7 @@ const Zoom = function(params) {
           .getBBox();
 
         // use the bounding box to set the size of the rect
-        d3
-          .select(this)
+        d3.select(this)
           .select('rect')
           .attr('x', bbox.x * 0.5)
           .attr('y', 0)
@@ -380,8 +364,7 @@ const Zoom = function(params) {
       // recalculate the height and divide by the zooming scale
       // col_label_obj.select('rect')
       if (Utils.has(params.network_data.col_nodes[0], 'value')) {
-        d3
-          .selectAll('.col_bars')
+        d3.selectAll('.col_bars')
           .transition()
           .duration(search_duration)
           .attr('width', function(d) {
@@ -394,8 +377,7 @@ const Zoom = function(params) {
       }
 
       if (Utils.has(params.network_data.row_nodes[0], 'value')) {
-        d3
-          .selectAll('.row_bars')
+        d3.selectAll('.row_bars')
           .transition()
           .duration(search_duration)
           .attr('width', function(d) {
@@ -452,8 +434,7 @@ const Zoom = function(params) {
 
   function draw_viz_links(params, inst_links) {
     // exit old elements
-    d3
-      .selectAll('.tile')
+    d3.selectAll('.tile')
       .data(inst_links, function(d) {
         return d.name;
       })
@@ -462,8 +443,7 @@ const Zoom = function(params) {
 
     // enter new elements
     //////////////////////////
-    d3
-      .select('#clust_group')
+    d3.select('#clust_group')
       .selectAll('.tile')
       .data(inst_links, function(d) {
         return d.name;
@@ -494,14 +474,12 @@ const Zoom = function(params) {
         return output_opacity;
       });
 
-    d3
-      .selectAll('.tile')
+    d3.selectAll('.tile')
       .on('mouseover', null)
       .on('mouseout', null);
 
     // redefine mouseover events for tiles
-    d3
-      .select('#clust_group')
+    d3.select('#clust_group')
       .selectAll('.tile')
       .on('mouseover', function(p) {
         let row_name = p.name.split('_')[0];
@@ -538,9 +516,9 @@ const Zoom = function(params) {
       params.labels.row_keep *
       params.zoom.scale();
     keep_width.col =
-      params.bounding_width_max.col *
-      params.labels.col_keep *
-      params.zoom.scale() /
+      (params.bounding_width_max.col *
+        params.labels.col_keep *
+        params.zoom.scale()) /
       params.viz.zoom_switch;
 
     function normal_name(d) {
@@ -557,8 +535,7 @@ const Zoom = function(params) {
 
       d3.selectAll('.row_label_text').each(function() {
         if (trans) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .transition()
             .duration(search_duration)
@@ -573,8 +550,7 @@ const Zoom = function(params) {
                 params.scale_font_offset(params.viz.zoom_scale_font.row)
             );
         } else {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .style(
               'font-size',
@@ -591,8 +567,7 @@ const Zoom = function(params) {
     } else {
       d3.selectAll('.row_label_text').each(function() {
         if (trans) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .transition()
             .duration(search_duration)
@@ -603,15 +578,13 @@ const Zoom = function(params) {
               'y',
               params.matrix.y_scale.bandwidth() * params.scale_font_offset(1)
             );
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .text(function(d) {
               return normal_name(d);
             });
         } else {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .style('font-size', params.labels.default_fs_row + 'px')
             // .attr('y', params.matrix.y_scale.bandwidth() *
@@ -629,8 +602,7 @@ const Zoom = function(params) {
 
       d3.selectAll('.col_label_click').each(function() {
         if (trans) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .transition()
             .duration(search_duration)
@@ -640,8 +612,7 @@ const Zoom = function(params) {
                 'px'
             );
         } else {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .style(
               'font-size',
@@ -653,21 +624,18 @@ const Zoom = function(params) {
     } else {
       d3.selectAll('.col_label_click').each(function() {
         if (trans) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .transition()
             .duration(search_duration)
             .style('font-size', params.labels.default_fs_col + 'px');
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .text(function(d) {
               return normal_name(d);
             });
         } else {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .style('font-size', params.labels.default_fs_col + 'px')
             .text(function(d) {
@@ -721,8 +689,7 @@ const Zoom = function(params) {
         let trim_fraction = max_width / actual_width;
         let keep_num_char = Math.floor(inst_text.length * trim_fraction) - 3;
         let trimmed_text = inst_text.substring(0, keep_num_char) + '..';
-        d3
-          .select(inst_selection)
+        d3.select(inst_selection)
           .select('text')
           .text(trimmed_text);
       }
@@ -748,7 +715,7 @@ const Zoom = function(params) {
     // calc the increase in rect size required
     // first get the current size of the rectangle
     let ini_rect_height = d3.select('.tile').attr('height');
-    let reduce_by = 2 * min_rect_height / ini_rect_height;
+    let reduce_by = (2 * min_rect_height) / ini_rect_height;
 
     let col_nodes = params.network_data.col_nodes;
 
@@ -768,7 +735,7 @@ const Zoom = function(params) {
 
     let increase_ds = 1; // 0.25*reduce_by;
 
-    let ds_factor = ini_tile_height / tile_height * increase_ds;
+    let ds_factor = (ini_tile_height / tile_height) * increase_ds;
 
     // get data from global_network_data
     let links_in_view = params.network_data.links;
@@ -854,8 +821,7 @@ const Zoom = function(params) {
     /////////////////////////
 
     // exit old elements
-    d3
-      .selectAll('.tile')
+    d3.selectAll('.tile')
       .data(new_links, function(d) {
         return d.name;
       })
@@ -871,8 +837,7 @@ const Zoom = function(params) {
 
     // enter new elements
     //////////////////////////
-    d3
-      .select('#clust_group')
+    d3.select('#clust_group')
       .selectAll('.tile')
       .data(new_links, function(d) {
         return d.name;

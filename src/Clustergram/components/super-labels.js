@@ -6,8 +6,7 @@ const SuperLabels = function() {
     // super col title
     /////////////////////////////////////
     // add super column title background
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('fill', params.viz.background_color)
       .attr('height', params.labels.super_label_width + 'px')
@@ -17,8 +16,7 @@ const SuperLabels = function() {
       .attr('transform', 'translate(0,' + params.viz.grey_border_width + ')');
 
     // super col title
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('text')
       .attr('id', 'super_col')
       .text(params.labels.super.col)
@@ -41,8 +39,7 @@ const SuperLabels = function() {
 
     // super row title
     /////////////////////////////////////
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('fill', params.viz.background_color)
       .attr('width', params.labels.super_label_width + 'px')
@@ -53,8 +50,7 @@ const SuperLabels = function() {
 
     // append super title row group
     // this is used to separate translation from rotation
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('g')
       .attr('id', 'super_row')
       .attr('transform', function() {
@@ -66,8 +62,7 @@ const SuperLabels = function() {
       });
 
     // super row label (rotate the already translated title )
-    d3
-      .select('#super_row')
+    d3.select('#super_row')
       .append('text')
       .text(params.labels.super.row)
       .attr('text-anchor', 'center')

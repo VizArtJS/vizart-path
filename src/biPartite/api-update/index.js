@@ -15,7 +15,10 @@ const apiUpdate = state => ({
       _svg
         .append('g')
         .attr('id', biP.id)
-        .attr('transform', 'translate(' + _options.chart.width / 2 * s + ',0)');
+        .attr(
+          'transform',
+          'translate(' + (_options.chart.width / 2) * s + ',0)'
+        );
 
       const partite = partiteLayout(
         biP.data,

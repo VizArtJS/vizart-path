@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<div id="update" class="btn btn-info" style="position: fixed;top: 10px; left: 70px">Update</div>
+<div id="update" class="btn btn-info" style="position: fixed;top: 10px; left: 70px; z-index: 999">Update</div>
 <div class="dropdown" style="position: fixed; top: 10px; left: 160px;">
     <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Color
@@ -35,7 +35,7 @@
     </ul>
 </div>
 
-<div class="dropdown2" style="position: fixed; top: 10px; left: 250px;">
+<div class="dropdown2" style="position: fixed; top: 10px; left: 250px; z-index:999">
     <button  class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Sort
         <span class="caret"></span>
@@ -96,29 +96,22 @@
 
         });
 
-
         // change color
         $('#color1').click(function(){
-            options.color.scheme = "BuGn";
-            chart.color(options.color);
+            chart.color({scheme: 'BuGn'})
         });
 
         $('#color2').click(function(){
-            options.color.scheme = "Blues";
-            chart.color(options.color)
+            chart.color({scheme: 'Blues'})
         });
 
         $('#color3').click(function(){
-            options.color.scheme = "Warm";
-            chart.color(options.color)
+            chart.color({scheme: 'Warm'})
         });
 
         $('#color4').click(function(){
-            options.color.scheme = "Cubehelix";
-            chart.color(options.color);
+            chart.color({scheme: 'Cubehelix'})
         });
-
-
     });
 </script>
 </body>

@@ -26,7 +26,7 @@ const Viz = function(params) {
   let _params = make(params);
 
   /* The main function; makes clustergram based on user arguments.
-     */
+   */
   function make(params) {
     let network_data = params.network_data;
 
@@ -149,8 +149,7 @@ const Viz = function(params) {
     // add border to svg in four separate lines - to not interfere with clicking anything
     ///////////////////////////////////////////////////////////////////////////////////////
     // left border
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('id', 'left_border')
       .attr('fill', params.viz.super_border_color) //!! prog_colors
@@ -159,8 +158,7 @@ const Viz = function(params) {
       .attr('transform', 'translate(0,0)');
 
     // right border
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('id', 'right_border')
       .attr('fill', params.viz.super_border_color) //!! prog_colors
@@ -173,8 +171,7 @@ const Viz = function(params) {
       });
 
     // top border
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('id', 'top_border')
       .attr('fill', params.viz.super_border_color) //!! prog_colors
@@ -186,8 +183,7 @@ const Viz = function(params) {
       });
 
     // bottom border
-    d3
-      .select('#main_svg')
+    d3.select('#main_svg')
       .append('rect')
       .attr('id', 'bottom_border')
       .attr('fill', params.viz.super_border_color) //!! prog_colors

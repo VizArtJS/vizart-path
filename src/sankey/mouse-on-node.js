@@ -26,24 +26,20 @@ const mouseOnNode = state =>
       .select('.sankey-link[data-link-source="' + d.name + '"]')
       .transition('highlight-link-transition')
       .duration(_options.animation.duration.quickUpdate)
-      .style(
-        'stroke',
-        d =>
-          _options.plots.colorfulLink
-            ? _color(d.source.name)
-            : _options.plots.linkColor
+      .style('stroke', d =>
+        _options.plots.colorfulLink
+          ? _color(d.source.name)
+          : _options.plots.linkColor
       )
       .style('stroke-opacity', 0.5);
     _linkGroup
       .select('.sankey-link[data-link-target="' + d.name + '"]')
       .transition('highlight-link-transition')
       .duration(_options.animation.duration.quickUpdate)
-      .style(
-        'stroke',
-        d =>
-          _options.plots.colorfulLink
-            ? colorScale(d.source.name)
-            : _options.plots.linkColor
+      .style('stroke', d =>
+        _options.plots.colorfulLink
+          ? colorScale(d.source.name)
+          : _options.plots.linkColor
       )
       .style('stroke-opacity', 0.5);
   };
