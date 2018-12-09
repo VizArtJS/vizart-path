@@ -133,7 +133,7 @@ const Config = function(args) {
   }
 
   /* Transpose network.
-     */
+   */
   function transpose_network(net) {
     let tnet = {},
       inst_link,

@@ -19,7 +19,7 @@ const drawTicks = state => {
       'transform',
       d =>
         'rotate(' +
-        (d.angle * 180 / Math.PI - 90) +
+        ((d.angle * 180) / Math.PI - 90) +
         ')' +
         'translate(' +
         _outerRadius +
@@ -39,9 +39,8 @@ const drawTicks = state => {
     .attr('x', 8)
     .attr('dy', '.35em')
     .attr('text-anchor', d => (d.angle > Math.PI ? 'end' : null))
-    .attr(
-      'transform',
-      d => (d.angle > Math.PI ? 'rotate(180)translate(-16)' : null)
+    .attr('transform', d =>
+      d.angle > Math.PI ? 'rotate(180)translate(-16)' : null
     )
     .text(d => d.label);
 

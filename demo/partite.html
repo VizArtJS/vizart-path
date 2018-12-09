@@ -81,33 +81,21 @@
             chart.render(res);
         });
 
-
-
-
         // change color
         $('#color1').click(function(){
-            var opt = chart.options();
-            opt.color.scheme = "BuGn";
-            chart.color(opt.color);
+            chart.color({scheme: 'BuGn'})
         });
 
         $('#color2').click(function(){
-            var opt = chart.options();
-            opt.color.scheme = "Blues";
-            chart.color(opt.color)
+            chart.color({scheme: 'Blues'})
         });
 
         $('#color3').click(function(){
-            var opt = chart.options();
-            opt.color.scheme = "Warm";
-            chart.color(opt.color)
-
+            chart.color({scheme: 'Warm'})
         });
 
         $('#color4').click(function(){
-            var opt = chart.options();
-            opt.color.scheme = "Cubehelix";
-            chart.color(opt.color)
+            chart.color({scheme: 'Cubehelix'})
         });
 
         $('#a1').click(function(){

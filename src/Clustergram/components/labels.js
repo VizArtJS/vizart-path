@@ -81,8 +81,7 @@ const Labels = function(params) {
         return 'translate(0,' + params.matrix.y_scale(inst_index) + ')';
       });
 
-    d3
-      .select('#row_label_zoom_container')
+    d3.select('#row_label_zoom_container')
       .selectAll('.row_label_text')
       .on('dblclick', function(d) {
         console.log('double clicking row');
@@ -104,23 +103,20 @@ const Labels = function(params) {
           return '<span>' + inst_name + '</span>';
         });
 
-      d3
-        .select('#' + params.viz.svg_div_id)
+      d3.select('#' + params.viz.svg_div_id)
         .select('svg')
         .select('#row_container')
         .call(tip);
 
       row_labels
         .on('mouseover', function(d) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .classed('active', true);
           tip.show(d);
         })
         .on('mouseout', function mouseout(d) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .classed('active', false);
           tip.hide(d);
@@ -128,14 +124,12 @@ const Labels = function(params) {
     } else {
       row_labels
         .on('mouseover', function(d) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .classed('active', true);
         })
         .on('mouseout', function mouseout(d) {
-          d3
-            .select(this)
+          d3.select(this)
             .select('text')
             .classed('active', false);
         });
@@ -165,8 +159,7 @@ const Labels = function(params) {
         .select(this)
         .select('text')[0][0]
         .getBBox();
-      d3
-        .select(this)
+      d3.select(this)
         .select('rect')
         .attr('x', bbox.x)
         .attr('y', 0)
@@ -337,7 +330,7 @@ const Labels = function(params) {
         let opacity_hlight = 0.85;
         let hlight_width = rel_width_hlight * params.viz.border_width;
         let hlight_height =
-          rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+          (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
 
         d3.selectAll('.click_hlight').remove();
 
@@ -348,8 +341,7 @@ const Labels = function(params) {
         //   .select('rect')
         //   .style('opacity', 1);
 
-        d3
-          .select(clicked_row)
+        d3.select(clicked_row)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'row_top_hlight')
@@ -358,8 +350,7 @@ const Labels = function(params) {
           .attr('fill', params.matrix.hlight_color)
           .attr('opacity', opacity_hlight);
 
-        d3
-          .select(clicked_row)
+        d3.select(clicked_row)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'row_bottom_hlight')
@@ -483,15 +474,13 @@ const Labels = function(params) {
           ') rotate(45)'
       )
       .on('mouseover', function(d) {
-        d3
-          .select(this)
+        d3.select(this)
           .select('text')
           .classed('active', true);
         // tip.show(d)
       })
       .on('mouseout', function(d) {
-        d3
-          .select(this)
+        d3.select(this)
           .select('text')
           .classed('active', false);
         // tip.hide(d)
@@ -530,8 +519,7 @@ const Labels = function(params) {
           let inst_name = d.name.replace(/_/g, ' ').split('#')[0];
           return '<span>' + inst_name + '</span>';
         });
-      d3
-        .select('#' + params.viz.svg_div_id)
+      d3.select('#' + params.viz.svg_div_id)
         .select('svg')
         .select('#row_container')
         .call(tip);
@@ -579,8 +567,7 @@ const Labels = function(params) {
 
       // reduce font size
       d3.selectAll('.row_label_text').each(function() {
-        d3
-          .select(this)
+        d3.select(this)
           .select('text')
           .style('font-size', params.labels.default_fs_row + 'px');
       });
@@ -597,8 +584,7 @@ const Labels = function(params) {
         params.labels.default_fs_col * params.ini_scale_font.col;
       // reduce font size
       d3.selectAll('.col_label_click').each(function() {
-        d3
-          .select(this)
+        d3.select(this)
           .select('text')
           .style('font-size', params.labels.default_fs_col + 'px');
       });
@@ -619,8 +605,7 @@ const Labels = function(params) {
         .select(this)
         .select('text')[0][0]
         .getBBox();
-      d3
-        .select(this)
+      d3.select(this)
         .select('rect')
         .attr('x', bbox.x * 1.25)
         .attr('y', 0)
@@ -712,8 +697,7 @@ const Labels = function(params) {
     }
 
     // add col callback function
-    d3
-      .selectAll('.col_label_text')
+    d3.selectAll('.col_label_text')
       .on('click', function(d) {
         if (typeof params.click_label == 'function') {
           params.click_label(d.name, 'col');
@@ -740,7 +724,7 @@ const Labels = function(params) {
         let opacity_hlight = 0.85;
         let hlight_width = rel_width_hlight * params.viz.border_width;
         let hlight_height =
-          rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+          (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
 
         d3.selectAll('.click_hlight').remove();
 
@@ -755,8 +739,7 @@ const Labels = function(params) {
         //   .select('rect')
         //   .style('opacity', 1);
 
-        d3
-          .select(clicked_col)
+        d3.select(clicked_col)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'col_top_hlight')
@@ -774,8 +757,7 @@ const Labels = function(params) {
             return 'translate(' + tmp_translate_x + ',' + tmp_translate_y + ')';
           });
 
-        d3
-          .select(clicked_col)
+        d3.select(clicked_col)
           .append('rect')
           .attr('class', 'click_hlight')
           .attr('id', 'col_bottom_hlight')

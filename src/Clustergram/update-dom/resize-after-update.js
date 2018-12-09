@@ -44,53 +44,45 @@ const resize_after_update = function(
         ')'
     );
 
-  d3
-    .select('#row_label_zoom_container')
-    .attr(
-      'transform',
+  d3.select('#row_label_zoom_container').attr(
+    'transform',
+    'translate(' +
+      [0, center_y] +
+      ')' +
+      ' scale(' +
+      zoom_y +
+      ',' +
+      zoom_y +
+      ')' +
       'translate(' +
-        [0, center_y] +
-        ')' +
-        ' scale(' +
-        zoom_y +
-        ',' +
-        zoom_y +
-        ')' +
-        'translate(' +
-        [0, pan_dy] +
-        ')'
-    );
+      [0, pan_dy] +
+      ')'
+  );
 
-  d3
-    .select('#row_viz_zoom_container')
-    .attr(
-      'transform',
+  d3.select('#row_viz_zoom_container').attr(
+    'transform',
+    'translate(' +
+      [0, center_y] +
+      ')' +
+      ' scale(' +
+      1 +
+      ',' +
+      zoom_y +
+      ')' +
       'translate(' +
-        [0, center_y] +
-        ')' +
-        ' scale(' +
-        1 +
-        ',' +
-        zoom_y +
-        ')' +
-        'translate(' +
-        [0, pan_dy] +
-        ')'
-    );
+      [0, pan_dy] +
+      ')'
+  );
 
-  d3
-    .select('#col_label_zoom_container')
-    .attr(
-      'transform',
-      ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
-    );
+  d3.select('#col_label_zoom_container').attr(
+    'transform',
+    ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
+  );
 
-  d3
-    .select('#col_viz_zoom_container')
-    .attr(
-      'transform',
-      ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
-    );
+  d3.select('#col_viz_zoom_container').attr(
+    'transform',
+    ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
+  );
 
   // set y translate: center_y is positive, positive moves the visualization down
   // the translate vector has the initial margin, the first y centering, and pan_dy
@@ -392,8 +384,7 @@ const resize_after_update = function(
       .select(this)
       .select('text')[0][0]
       .getBBox();
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .attr('x', bbox.x)
       .attr('y', 0)
@@ -629,8 +620,7 @@ const resize_after_update = function(
       params.labels.default_fs_row * params.ini_scale_font.row;
     // reduce font size
     d3.selectAll('.row_label_text').each(function() {
-      d3
-        .select(this)
+      d3.select(this)
         .select('text')
         .style('font-size', params.labels.default_fs_row + 'px');
     });
@@ -648,8 +638,7 @@ const resize_after_update = function(
       params.labels.default_fs_col * params.ini_scale_font.col;
     // reduce font size
     d3.selectAll('.col_label_click').each(function() {
-      d3
-        .select(this)
+      d3.select(this)
         .select('text')
         .style('font-size', params.labels.default_fs_col + 'px');
     });
@@ -660,8 +649,7 @@ const resize_after_update = function(
       .select(this)
       .select('text')[0][0]
       .getBBox();
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .attr('x', bbox.x * 1.25)
       .attr('y', 0)

@@ -83,7 +83,7 @@ const transformMatrix = (_data, _opt) => {
   matrix[sourceDivide][rowLength + 1] = emptyStroke;
   matrix[rowLength + 1][sourceDivide] = emptyStroke;
 
-  let offset = 2 * Math.PI * (emptyStroke / (respondents + emptyStroke)) / 4;
+  let offset = (2 * Math.PI * (emptyStroke / (respondents + emptyStroke))) / 4;
 
   return {
     rowLabel: sourceLabels

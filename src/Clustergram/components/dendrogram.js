@@ -41,7 +41,7 @@ const Dendrogram = function(type, params, delay_dendro) {
   }
 
   /* Changes the groupings (x- and y-axis color bars).
-     */
+   */
   function change_groups(inst_index) {
     d3.selectAll('.' + dom_class).style('fill', function(d) {
       return group_colors[d.group[inst_index]];
@@ -65,8 +65,7 @@ const Dendrogram = function(type, params, delay_dendro) {
           .select('rect')
           .empty()
       ) {
-        d3
-          .select(this)
+        d3.select(this)
           .append('rect')
           .attr('class', dom_class)
           .attr('width', function() {
@@ -83,8 +82,7 @@ const Dendrogram = function(type, params, delay_dendro) {
             return inst_offset + 'px';
           });
       } else {
-        d3
-          .select(this)
+        d3.select(this)
           .select('rect')
           .attr('width', function() {
             let inst_width = params.class_room.symbol_width - 1;
@@ -134,8 +132,7 @@ const Dendrogram = function(type, params, delay_dendro) {
           .select('rect')
           .empty()
       ) {
-        d3
-          .select(this)
+        d3.select(this)
           .append('rect')
           .attr('class', dom_class)
           .attr('width', params.matrix.x_scale.bandwidth())
@@ -148,8 +145,7 @@ const Dendrogram = function(type, params, delay_dendro) {
             return get_group_color(d.group[inst_level]);
           });
       } else {
-        d3
-          .select(this)
+        d3.select(this)
           .select('rect')
           .attr('width', params.matrix.x_scale.bandwidth())
           .attr('height', function() {

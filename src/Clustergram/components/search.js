@@ -6,7 +6,7 @@ import indexOf from 'lodash-es/indexOf';
 
 const Search = function(params, nodes, prop) {
   /* Collect entities from row or columns.
-     */
+   */
   let entities = [],
     i;
 
@@ -15,7 +15,7 @@ const Search = function(params, nodes, prop) {
   }
 
   /* Find a gene (row) in the clustergram.
-     */
+   */
   function find_entities(search_term) {
     if (entities.indexOf(search_term) !== -1) {
       un_highlight_entities();
@@ -25,7 +25,7 @@ const Search = function(params, nodes, prop) {
   }
 
   /* Zoom into and highlight the found the gene
-     */
+   */
   function zoom_and_highlight_found_entity(search_term) {
     let idx = indexOf(entities, search_term),
       inst_y_pos = params.matrix.y_scale(idx),
@@ -36,15 +36,13 @@ const Search = function(params, nodes, prop) {
   }
 
   function un_highlight_entities() {
-    d3
-      .selectAll('.row_label_text')
+    d3.selectAll('.row_label_text')
       .select('rect')
       .style('opacity', 0);
   }
 
   function highlight_entity(search_term) {
-    d3
-      .selectAll('.row_label_text')
+    d3.selectAll('.row_label_text')
       .filter(function(d) {
         return d[prop] === search_term;
       })
@@ -53,7 +51,7 @@ const Search = function(params, nodes, prop) {
   }
 
   /* Returns all the genes in the clustergram.
-     */
+   */
   function get_entities() {
     return entities;
   }

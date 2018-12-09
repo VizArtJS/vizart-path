@@ -58,7 +58,7 @@ const draw = state => {
     .duration(2000)
     .attr('transform', d => {
       d.angle = (d.startAngle + d.endAngle) / 2;
-      const r = 'rotate(' + (d.angle * 180 / Math.PI - 90) + ')';
+      const r = 'rotate(' + ((d.angle * 180) / Math.PI - 90) + ')';
       const t = ' translate(' + (innerRadius + 26) + ')';
       return r + t + (d.angle > Math.PI ? ' rotate(180)' : ' rotate(0)');
     })

@@ -51,53 +51,45 @@ const run_reset_visualization_size = function(
         ')'
     );
 
-  d3
-    .select('#row_label_zoom_container')
-    .attr(
-      'transform',
+  d3.select('#row_label_zoom_container').attr(
+    'transform',
+    'translate(' +
+      [0, center_y] +
+      ')' +
+      ' scale(' +
+      zoom_y +
+      ',' +
+      zoom_y +
+      ')' +
       'translate(' +
-        [0, center_y] +
-        ')' +
-        ' scale(' +
-        zoom_y +
-        ',' +
-        zoom_y +
-        ')' +
-        'translate(' +
-        [0, pan_dy] +
-        ')'
-    );
+      [0, pan_dy] +
+      ')'
+  );
 
-  d3
-    .select('#row_viz_zoom_container')
-    .attr(
-      'transform',
+  d3.select('#row_viz_zoom_container').attr(
+    'transform',
+    'translate(' +
+      [0, center_y] +
+      ')' +
+      ' scale(' +
+      1 +
+      ',' +
+      zoom_y +
+      ')' +
       'translate(' +
-        [0, center_y] +
-        ')' +
-        ' scale(' +
-        1 +
-        ',' +
-        zoom_y +
-        ')' +
-        'translate(' +
-        [0, pan_dy] +
-        ')'
-    );
+      [0, pan_dy] +
+      ')'
+  );
 
-  d3
-    .select('#col_label_zoom_container')
-    .attr(
-      'transform',
-      ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
-    );
+  d3.select('#col_label_zoom_container').attr(
+    'transform',
+    ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
+  );
 
-  d3
-    .select('#col_viz_zoom_container')
-    .attr(
-      'transform',
-      ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
-    );
+  d3.select('#col_viz_zoom_container').attr(
+    'transform',
+    ' scale(' + 1 + ',' + 1 + ')' + 'translate(' + [pan_dx, 0] + ')'
+  );
 
   // set y translate: center_y is positive, positive moves the visualization down
   // the translate vector has the initial margin, the first y centering, and pan_dy
@@ -108,8 +100,7 @@ const run_reset_visualization_size = function(
   params.zoom.translate([pan_dx, net_y_offset]);
 
   // size the svg container div - svg_div
-  d3
-    .select('#' + params.viz.svg_div_id)
+  d3.select('#' + params.viz.svg_div_id)
     .style('margin-left', set_margin_left + 'px')
     .style('margin-top', set_margin_top + 'px')
     .style('width', set_clust_width + 'px')
@@ -352,8 +343,7 @@ const run_reset_visualization_size = function(
 
     // enter new elements
     //////////////////////////
-    d3
-      .select('#clust_group')
+    d3.select('#clust_group')
       .selectAll('.tile')
       .data(inst_links, function(d) {
         return d.name;
@@ -384,14 +374,12 @@ const run_reset_visualization_size = function(
         return output_opacity;
       });
 
-    d3
-      .selectAll('.tile')
+    d3.selectAll('.tile')
       .on('mouseover', null)
       .on('mouseout', null);
 
     // redefine mouseover events for tiles
-    d3
-      .select('#clust_group')
+    d3.select('#clust_group')
       .selectAll('.tile')
       .on('mouseover', function(p) {
         let row_name = p.name.split('_')[0];
@@ -491,11 +479,10 @@ const run_reset_visualization_size = function(
   let opacity_hlight = 0.85;
   let hlight_width = rel_width_hlight * params.viz.border_width;
   let hlight_height =
-    rel_width_hlight * params.viz.border_width / params.viz.zoom_switch;
+    (rel_width_hlight * params.viz.border_width) / params.viz.zoom_switch;
 
   // top highlight
-  d3
-    .select('#top_hlight')
+  d3.select('#top_hlight')
     .attr('width', params.matrix.rect_width)
     .attr('height', hlight_height)
     .attr('transform', function() {
@@ -507,8 +494,7 @@ const run_reset_visualization_size = function(
     });
 
   // left highlight
-  d3
-    .select('#left_hlight')
+  d3.select('#left_hlight')
     .attr('width', hlight_width)
     .attr('height', params.matrix.rect_width - hlight_height * 0.99)
     .attr('transform', function() {
@@ -522,8 +508,7 @@ const run_reset_visualization_size = function(
     });
 
   // right highlight
-  d3
-    .select('#right_hlight')
+  d3.select('#right_hlight')
     .attr('width', hlight_width)
     .attr('height', params.matrix.rect_height - hlight_height * 0.99)
     .attr('transform', function() {
@@ -535,8 +520,7 @@ const run_reset_visualization_size = function(
     });
 
   // bottom highlight
-  d3
-    .select('#bottom_hlight')
+  d3.select('#bottom_hlight')
     .attr('width', function() {
       return params.matrix.rect_width - 1.98 * hlight_width;
     })
@@ -551,13 +535,11 @@ const run_reset_visualization_size = function(
 
   // resize row highlight
   /////////////////////////
-  d3
-    .select('#row_top_hlight')
+  d3.select('#row_top_hlight')
     .attr('width', params.viz.svg_dim.width)
     .attr('height', hlight_height);
 
-  d3
-    .select('#row_bottom_hlight')
+  d3.select('#row_bottom_hlight')
     .attr('width', params.viz.svg_dim.width)
     .attr('height', hlight_height)
     .attr('transform', function() {
@@ -567,8 +549,7 @@ const run_reset_visualization_size = function(
 
   // resize col highlight
   /////////////////////////
-  d3
-    .select('#col_top_hlight')
+  d3.select('#col_top_hlight')
     .attr('width', params.viz.clust.dim.height)
     .attr('height', hlight_width)
     .attr('transform', function() {
@@ -581,8 +562,7 @@ const run_reset_visualization_size = function(
       return 'translate(' + tmp_translate_x + ',' + tmp_translate_y + ')';
     });
 
-  d3
-    .select('#col_bottom_hlight')
+  d3.select('#col_bottom_hlight')
     .attr('width', params.viz.clust.dim.height)
     .attr('height', hlight_width)
     .attr('transform', function() {
@@ -653,8 +633,7 @@ const run_reset_visualization_size = function(
       .select(this)
       .select('text')[0][0]
       .getBBox();
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .attr('x', bbox.x)
       .attr('y', 0)
@@ -842,8 +821,7 @@ const run_reset_visualization_size = function(
       params.labels.default_fs_row * params.ini_scale_font.row;
     // reduce font size
     d3.selectAll('.row_label_text').each(function() {
-      d3
-        .select(this)
+      d3.select(this)
         .select('text')
         .style('font-size', params.labels.default_fs_row + 'px');
     });
@@ -861,8 +839,7 @@ const run_reset_visualization_size = function(
       params.labels.default_fs_col * params.ini_scale_font.col;
     // reduce font size
     d3.selectAll('.col_label_click').each(function() {
-      d3
-        .select(this)
+      d3.select(this)
         .select('text')
         .style('font-size', params.labels.default_fs_col + 'px');
     });
@@ -873,8 +850,7 @@ const run_reset_visualization_size = function(
       .select(this)
       .select('text')[0][0]
       .getBBox();
-    d3
-      .select(this)
+    d3.select(this)
       .select('rect')
       .attr('x', bbox.x * 1.25)
       .attr('y', 0)

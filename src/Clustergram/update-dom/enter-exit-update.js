@@ -30,8 +30,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
   }
 
   // remove tiles
-  d3
-    .selectAll('.tile')
+  d3.selectAll('.tile')
     .data(links, function(d) {
       return d.name;
     })
@@ -42,8 +41,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .remove();
 
   // remove row labels
-  d3
-    .selectAll('.row_label_text')
+  d3.selectAll('.row_label_text')
     .data(row_nodes, function(d) {
       return d.name;
     })
@@ -54,8 +52,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .remove();
 
   // remove column labels
-  d3
-    .selectAll('.col_label_click')
+  d3.selectAll('.col_label_click')
     .data(col_nodes, function(d) {
       return d.name;
     })
@@ -66,8 +63,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .remove();
 
   // remove row triangles and colorbars
-  d3
-    .selectAll('.row_viz_group')
+  d3.selectAll('.row_viz_group')
     .data(row_nodes, function(d) {
       return d.name;
     })
@@ -78,8 +74,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .remove();
 
   // remove row triangles
-  d3
-    .selectAll('.col_label_text')
+  d3.selectAll('.col_label_text')
     .data(col_nodes, function(d) {
       return d.name;
     })
@@ -89,8 +84,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .style('opacity', 0)
     .remove();
 
-  d3
-    .selectAll('.horz_lines')
+  d3.selectAll('.horz_lines')
     .data(row_nodes, function(d) {
       return d.name;
     })
@@ -100,8 +94,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .style('opacity', 0)
     .remove();
 
-  d3
-    .selectAll('.vert_lines')
+  d3.selectAll('.vert_lines')
     .data(col_nodes, function(d) {
       return d.name;
     })
@@ -112,8 +105,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .remove();
 
   // remove dendrogram
-  d3
-    .selectAll('.col_viz_group')
+  d3.selectAll('.col_viz_group')
     .data(col_nodes, function(d) {
       return d.name;
     })
@@ -129,8 +121,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
   // enter new elements
   //////////////////////////
 
-  d3
-    .select('#clust_group')
+  d3.select('#clust_group')
     .selectAll('.tile')
     .data(links, function(d) {
       return d.name;
@@ -164,14 +155,12 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
       return output_opacity;
     });
 
-  d3
-    .selectAll('.tile')
+  d3.selectAll('.tile')
     .on('mouseover', null)
     .on('mouseout', null);
 
   // redefine mouseover events for tiles
-  d3
-    .select('#clust_group')
+  d3.select('#clust_group')
     .selectAll('.tile')
     .on('mouseover', function(p) {
       let row_name = p.name.split('_')[0];
@@ -219,8 +208,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
   d3.selectAll('.vert_lines').remove();
 
   // append horizontal lines
-  d3
-    .select('#clust_group')
+  d3.select('#clust_group')
     .selectAll('.horz_lines')
     .data(row_nodes, function(d) {
       return d.name;
@@ -247,8 +235,7 @@ const enter_exit_update = function(params, network_data, reorder, delays) {
     .attr('opacity', 1);
 
   // append vertical line groups
-  d3
-    .select('#clust_group')
+  d3.select('#clust_group')
     .selectAll('.vert_lines')
     .data(col_nodes)
     .enter()

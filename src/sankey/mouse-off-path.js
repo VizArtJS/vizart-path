@@ -9,12 +9,10 @@ const mouseOffPath = state => (d, i) => {
     .selectAll('.sankey-link')
     .transition()
     .duration(_options.animation.duration.quickUpdate)
-    .style(
-      'stroke',
-      d =>
-        _options.plots.colorfulLink
-          ? _color(d.source.name)
-          : _options.plots.linkColor
+    .style('stroke', d =>
+      _options.plots.colorfulLink
+        ? _color(d.source.name)
+        : _options.plots.linkColor
     )
     .style('stroke-opacity', _options.plots.linkOpacity);
 };

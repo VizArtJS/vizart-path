@@ -48,16 +48,14 @@ const draw = state => {
     .transition()
     .duration(_options.animation.duration.update)
     .delay(
-      (d, i) => i / _data.links.length * _options.animation.duration.update
+      (d, i) => (i / _data.links.length) * _options.animation.duration.update
     )
     .attr('d', path)
     .style('stroke-width', d => Math.max(1, d.dy))
-    .style(
-      'stroke',
-      d =>
-        _options.plots.colorfulLink
-          ? _color(d.source.name)
-          : _options.plots.linkColor
+    .style('stroke', d =>
+      _options.plots.colorfulLink
+        ? _color(d.source.name)
+        : _options.plots.linkColor
     )
     .style('stroke-opacity', _options.plots.linkOpacity);
 
@@ -70,12 +68,10 @@ const draw = state => {
     .attr('data-link-target', (d, i) => d.target.name)
     .style('fill', 'none')
     .style('stroke-width', d => Math.max(1, d.dy))
-    .style(
-      'stroke',
-      d =>
-        _options.plots.colorfulLink
-          ? _color(d.source.name)
-          : _options.plots.linkColor
+    .style('stroke', d =>
+      _options.plots.colorfulLink
+        ? _color(d.source.name)
+        : _options.plots.linkColor
     )
     .style('stroke-opacity', _options.plots.linkOpacity);
 
@@ -139,15 +135,15 @@ const draw = state => {
     .transition()
     .duration(_options.animation.duration.update)
     .delay(
-      (d, i) => i / _data.nodes.length * _options.animation.duration.update
+      (d, i) => (i / _data.nodes.length) * _options.animation.duration.update
     )
     .attr(
       'height',
       _options.plots.horizontal
         ? d => (d.dy > 0 ? d.dy : 0.5)
         : _layout.nodeWidth() > 0
-          ? _layout.nodeWidth()
-          : 0.5
+        ? _layout.nodeWidth()
+        : 0.5
     )
     .attr('width', _options.plots.horizontal ? _layout.nodeWidth() : d => d.dy)
     .style('fill', d => (d.color = _color(d.name)))
@@ -161,7 +157,7 @@ const draw = state => {
       .transition()
       .duration(_options.animation.duration.update)
       .delay(
-        (d, i) => i / _data.nodes.length * _options.animation.duration.update
+        (d, i) => (i / _data.nodes.length) * _options.animation.duration.update
       )
       .attr('x', -6)
       .attr('y', d => d.dy / 2)
@@ -179,7 +175,7 @@ const draw = state => {
       .transition()
       .duration(_options.animation.duration.update)
       .delay((d, i) => {
-        return i / _data.nodes.length * _options.animation.duration.update;
+        return (i / _data.nodes.length) * _options.animation.duration.update;
       })
       .attr('text-anchor', 'middle')
       //.attr("transform", "rotate(-20)")
@@ -206,8 +202,8 @@ const draw = state => {
       _options.plots.horizontal
         ? d => (d.dy > 0 ? d.dy : 0.5)
         : _layout.nodeWidth() > 0
-          ? _layout.nodeWidth()
-          : 0.5
+        ? _layout.nodeWidth()
+        : 0.5
     )
     .attr('width', _options.plots.horizontal ? _layout.nodeWidth() : d => d.dy)
     .style('fill', d => {

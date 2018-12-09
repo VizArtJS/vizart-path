@@ -629,16 +629,14 @@ const VizParams = function(config) {
         screen_height - outer_margins.top - outer_margins.bottom;
 
       // size the svg container div - svg_div
-      d3
-        .select('#' + params.viz.svg_div_id)
+      d3.select('#' + params.viz.svg_div_id)
         .style('margin-left', outer_margins.left + 'px')
         .style('margin-top', outer_margins.top + 'px')
         .style('width', cont_dim.width + 'px')
         .style('height', cont_dim.height + 'px');
     } else {
       // size the svg container div - svg_div
-      d3
-        .select('#' + params.viz.svg_div_id)
+      d3.select('#' + params.viz.svg_div_id)
         .style('margin-left', outer_margins.left + 'px')
         .style('margin-top', outer_margins.top + 'px');
     }
